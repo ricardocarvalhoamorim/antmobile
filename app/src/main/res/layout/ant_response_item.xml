@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="8dp"
+    android:layout_margin="8dp"
+    android:elevation="8sp"
+    android:id="@+id/item_container"
+    >
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            >
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                card_view:cardCornerRadius="8dp"
+                card_view:cardElevation="6sp"
+                android:layout_margin="5dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:id="@+id/card_photo"
+                card_view:cardPreventCornerOverlap="false"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@drawable/ic_person_dark"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/ant_item_photo"
+                        android:layout_marginEnd="16dp"
+                        />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <TextView
+                android:id="@+id/ant_item_name"
+                android:layout_width="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="NAME placeholder"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/card_photo"
+                android:layout_alignParentTop="true"
+                android:textSize="30sp"
+                />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:text="Category"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ant_item_category"
+            />
+
+        <ProgressBar
+            android:id="@+id/item_score"
+            android:visibility="gone"
+            android:progress="100"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="2dp" />
+
+        <LinearLayout
+            android:layout_gravity="bottom|end"
+            android:orientation="horizontal"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageButton
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:id="@+id/item_action_map"
+                android:src="@drawable/ic_action_navigate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageButton
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:id="@+id/item_action_info"
+                android:src="@drawable/ic_action_webpage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        <ImageButton
+            android:id="@+id/item_action_share"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/ic_action_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
