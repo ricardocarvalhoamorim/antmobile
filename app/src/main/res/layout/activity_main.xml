@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:text="Kajir helps you find your way, search for staff, students and girls you'd like to meet. Tap here to start..."
+                    android:text="Kajir helps you find your way, search for staff, students and girls you'd like to meet. Tap the search button to start..."
                     />
 
             </LinearLayout>
