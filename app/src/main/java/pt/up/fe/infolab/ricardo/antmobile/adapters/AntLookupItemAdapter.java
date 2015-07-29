@@ -51,7 +51,6 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         View v;
 
-
         v = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.ant_response_item, parent, false);
         return new AntLookupViewHolder(v);
