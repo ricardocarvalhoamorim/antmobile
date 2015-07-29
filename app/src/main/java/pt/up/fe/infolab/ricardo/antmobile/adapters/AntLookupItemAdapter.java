@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -87,6 +88,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             ((AntLookupViewHolder)holder).itemMap.setVisibility(View.VISIBLE);
         }
 
+
         if (!id.equals("")) {
             String thumbUrl = "https://sigarra.up.pt/feup/en/FOTOGRAFIAS_SERVICE.foto?pct_cod="
                     + id;
@@ -116,25 +118,37 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                         }
                     });
 
-            //setAnimation(holder.itemContainer, position);
+            setAnimation(((AntLookupViewHolder) holder).itemContainer, position);
         } else {
             ((AntLookupViewHolder)holder).ivItemDrawable.setImageDrawable(
-                    context.getDrawable(R.drawable.ic_person_dark));
+                    ContextCompat.getDrawable(
+                            context, R.drawable.ic_person_dark));
         }
 
         setAnimation(((AntLookupViewHolder)holder).itemContainer, position);
 
+        final String finalAttributesStr = attributesStr;
         ((AntLookupViewHolder)holder).itemShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Found him!");
+                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
+                        item.getDescription() + "\n\n" + finalAttributesStr
+                                + "\n\n\nSource: ant.fe.up.pt, José Devezas");
+
+                context.startActivity(Intent.createChooser(shareIntent, "AntMobile"));
             }
         });
 
         ((AntLookupViewHolder)holder).itemWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("http://paginas.fe.up.pt/~rcamorim/ant"));
+                context.startActivity(i);
             }
         });
 

@@ -40,6 +40,7 @@ import pt.up.fe.infolab.ricardo.antmobile.models.SigarraIndividual;
 
 public class MainActivity extends ActionBarActivity implements AdapterViewCompat.OnItemClickListener, Response.Listener<JSONArray>, Response.ErrorListener {
 
+    private static final String DEFAULT_NR_RESULTS = "10";
     private AntLookupItemAdapter mAdapter;
     private ArrayList<SigarraIndividual> lookupItems;
     private RecyclerView rvLookupItems;
@@ -155,6 +156,7 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
                             Uri builtUri = Uri.parse(baseQuery)
                                     .buildUpon()
                                     .appendQueryParameter("q", query)
+                                    .appendQueryParameter("num", DEFAULT_NR_RESULTS)
                                     .build();
 
                             String queryURL = builtUri.toString();
@@ -176,14 +178,6 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
                     }
                 });
 
-        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                Toast.makeText(getApplicationContext(), "Fine, no query", Toast.LENGTH_SHORT).show();
-                dialog.cancel();
-                attachEmptyView();
-            }
-        });
 
         alertDialog.show();
     }

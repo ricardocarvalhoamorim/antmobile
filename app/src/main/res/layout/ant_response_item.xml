@@ -93,6 +93,7 @@
             <ImageButton
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:id="@+id/item_action_info"
+                android:clickable="true"
                 android:src="@drawable/ic_action_webpage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
