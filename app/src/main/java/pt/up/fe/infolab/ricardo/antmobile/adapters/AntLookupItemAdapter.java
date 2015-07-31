@@ -34,16 +34,12 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
     private ArrayList<SigarraIndividual> items;
     private int lastPosition = -1;
 
-    private static AdapterViewCompat.OnItemClickListener listener;
-
 
     public AntLookupItemAdapter(ArrayList<SigarraIndividual> srcItems,
-                                AdapterViewCompat.OnItemClickListener clickListener,
                                 Context context) {
 
         this.context = context;
         this.items = srcItems;
-        listener = clickListener;
     }
 
     @Override
@@ -68,11 +64,11 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         for (SigarraAttribute attr : attributes) {
             attributesStr += attr.getLabel() + ": " + attr.getValue() + "\n";
-            if (attr.getLabel().equals("Código")) {
+            if (attr.getLabel().equals(context.getString(R.string.entry_entity_code))) {
                 id = attr.getValue();
             }
 
-            if (attr.getLabel().equals("Sala")) {
+            if (attr.getLabel().equals(context.getString(R.string.entry_entity_room))) {
                 room = attr.getValue();
             }
         }
@@ -136,7 +132,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                 shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Found him!");
                 shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
                         item.getDescription() + "\n\n" + finalAttributesStr
-                                + "\n\n\nSource: ant.fe.up.pt, José Devezas");
+                                + context.getString(R.string.share_intent_footer));
 
                 context.startActivity(Intent.createChooser(shareIntent, "AntMobile"));
             }
@@ -155,7 +151,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             @Override
             public void onClick(View v) {
                 for (SigarraAttribute attr : item.getAttributes()) {
-                    if (attr.getLabel().equals("Sala")) {
+                    if (attr.getLabel().equals(context.getString(R.string.entry_entity_room))) {
                         String url = "http://maps.google.com/maps?daddr="+ attr.getValue() + ", Faculdade de Engenharia da Universidade do Porto";
                         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
                         context.startActivity(intent);

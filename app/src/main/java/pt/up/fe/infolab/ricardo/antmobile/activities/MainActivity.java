@@ -38,7 +38,7 @@ import pt.up.fe.infolab.ricardo.antmobile.adapters.AntLookupItemAdapter;
 import pt.up.fe.infolab.ricardo.antmobile.models.SigarraIndividual;
 
 
-public class MainActivity extends ActionBarActivity implements AdapterViewCompat.OnItemClickListener, Response.Listener<JSONArray>, Response.ErrorListener {
+public class MainActivity extends ActionBarActivity implements Response.Listener<JSONArray>, Response.ErrorListener {
 
     private static final String DEFAULT_NR_RESULTS = "10";
     private AntLookupItemAdapter mAdapter;
@@ -77,7 +77,7 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
             }
         });
 
-        mAdapter = new AntLookupItemAdapter(lookupItems, this, this);
+        mAdapter = new AntLookupItemAdapter(lookupItems, this);
         mAdapter.notifyDataSetChanged();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -129,8 +129,8 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
         mAdapter.notifyDataSetChanged();
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-        alertDialog.setTitle("Tell me your wishes");
-        alertDialog.setMessage("Looking for someone? a girl you saw yesterday? Kajir Helps you");
+        alertDialog.setTitle(getString(R.string.query_input_title));
+        alertDialog.setMessage(getString(R.string.query_input_message));
 
         final EditText input = new EditText(MainActivity.this);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -149,7 +149,7 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
                         String query = "";
                         query = input.getText().toString();
                         if (query.equals("")) {
-                            Toast.makeText(getApplicationContext(), "Fine, no query", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.no_query), Toast.LENGTH_SHORT).show();
                             attachEmptyView();
                         } else {
 
@@ -172,7 +172,7 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
         alertDialog.setNegativeButton(android.R.string.cancel,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Fine, no query", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.no_query), Toast.LENGTH_SHORT).show();
                         dialog.cancel();
                         attachEmptyView();
                     }
@@ -205,17 +205,13 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onItemClick(AdapterViewCompat<?> parent, View view, int position, long id) {
-
-    }
 
     @Override
     public void onResponse(JSONArray response) {
         Log.d("", response.toString());
 
         if (response.length() == 0) {
-            Toast.makeText(getApplicationContext(), "No results", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.no_results), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -236,7 +232,7 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
                 lookupItems.add(identity);
             }
         } catch (JSONException e) {
-            Toast.makeText(getApplication(), "Failed to parse response", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), getString(R.string.parsing_failed), Toast.LENGTH_SHORT).show();
         }
 
         mAdapter.notifyDataSetChanged();
@@ -245,10 +241,9 @@ public class MainActivity extends ActionBarActivity implements AdapterViewCompat
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        VolleyLog.d("", "Error: " + error.getMessage());
+        VolleyLog.e("Volley", "" + error.getMessage());
         Toast.makeText(getApplicationContext(),
-                error.getMessage(), Toast.LENGTH_SHORT).show();
+                getString(R.string.volley_error), Toast.LENGTH_SHORT).show();
     }
-
 
 }
