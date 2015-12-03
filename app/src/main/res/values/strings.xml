@@ -3,11 +3,12 @@
     <string name="action_settings">Settings</string>
     <string name="entry_entity_code">Código</string>
     <string name="entry_entity_room">Sala</string>
-    <string name="no_query">Fine, no query</string>
+    <string name="no_query">Honey, I need something to look for. You gotta give me that k? Here\'s an example: José Devezas</string>
     <string name="query_input_title">Tell me your wishes</string>
     <string name="query_input_message">Looking for someone? a girl you saw yesterday? Ant Helps you</string>
-    <string name="no_results">No results</string>
+    <string name="no_results">No results were found. This is not the person you are looking for.</string>
     <string name="parsing_failed">Failed to parse response</string>
-    <string name="volley_error">Our parsing library made a mistake... maybe the API is down..</string>
+    <string name="volley_error">Our parsing library made a mistake… maybe the API is down…</string>
     <string name="share_intent_footer"><![CDATA[\\n\\n Source: ant.fe.up.pt, José Devezas & Ricardo Amorim]]></string>
+    <string name="bad_response">Hey man, all I got was en empty response. Not my fault k? Naughty Ant is naughty. Never though I\'d say this, but try sigarra.</string>
 </resources>

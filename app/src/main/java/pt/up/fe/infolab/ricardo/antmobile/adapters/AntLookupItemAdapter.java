@@ -1,41 +1,54 @@
 package pt.up.fe.infolab.ricardo.antmobile.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.internal.widget.AdapterViewCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.Target;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import pt.up.fe.infolab.ricardo.antmobile.AppController;
 import pt.up.fe.infolab.ricardo.antmobile.R;
-import pt.up.fe.infolab.ricardo.antmobile.models.SigarraAttribute;
-import pt.up.fe.infolab.ricardo.antmobile.models.SigarraIndividual;
+import pt.up.fe.infolab.ricardo.antmobile.models.Data;
+import pt.up.fe.infolab.ricardo.antmobile.models.Decoration;
+import pt.up.fe.infolab.ricardo.antmobile.models.ResponseAttribute;
+import pt.up.fe.infolab.ricardo.antmobile.models.SearchResult;
 
 public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private ArrayList<SigarraIndividual> items;
+    private ArrayList<SearchResult> items;
     private int lastPosition = -1;
 
 
-    public AntLookupItemAdapter(ArrayList<SigarraIndividual> srcItems,
+    public AntLookupItemAdapter(ArrayList<SearchResult> srcItems,
                                 Context context) {
 
         this.context = context;
@@ -55,117 +68,105 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
-        final SigarraIndividual item = items.get(position);
-        String room = "";
-
-        String attributesStr = "";
-        String id = "";
-        ArrayList<SigarraAttribute> attributes = item.getAttributes();
-
-        for (SigarraAttribute attr : attributes) {
-            attributesStr += attr.getLabel() + ": " + attr.getValue() + "\n";
-            if (attr.getLabel().equals(context.getString(R.string.entry_entity_code))) {
-                id = attr.getValue();
-            }
-
-            if (attr.getLabel().equals(context.getString(R.string.entry_entity_room))) {
-                room = attr.getValue();
-            }
-        }
-
+        final SearchResult item = items.get(position);
         ((AntLookupViewHolder)holder).tvItemName.setText(item.getDescription());
-        ((AntLookupViewHolder)holder).tvItemAttributes.setText(attributesStr);
-        ((AntLookupViewHolder)holder).pbItemScore.setProgress((int) item.getScore());
 
-        if (room.equals("")) {
-            ((AntLookupViewHolder)holder).itemMap.setVisibility(View.GONE);
-        } else {
-            ((AntLookupViewHolder)holder).itemMap.setVisibility(View.VISIBLE);
-        }
+        //TODO: make item related requests
+        String baseQuery = "http://ant.fe.up.pt/search/decorator/metadata.json?";
+        Uri builtUri = Uri.parse(baseQuery)
+                .buildUpon()
+                .appendQueryParameter("entity", item.getUri().substring(item.getUri().indexOf('#') + 1))
+                .appendQueryParameter("type", item.getType().getUri().substring(item.getType().getUri().indexOf('#') + 1))
+                .build();
 
+        String queryURL = builtUri.toString();
 
-        if (!id.equals("")) {
-            String thumbUrl = "https://sigarra.up.pt/feup/en/FOTOGRAFIAS_SERVICE.foto?pct_cod="
-                    + id;
-
-            Glide.with(context).load(thumbUrl)
-                    .asBitmap()
-                    .centerCrop()
-                    .animate(android.R.anim.fade_in)
-                    .placeholder(R.drawable.ic_person_dark)
-                    .into(new BitmapImageViewTarget(((AntLookupViewHolder) holder).ivItemDrawable) {
-                        @Override
-                        public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
-                            super.onResourceReady(bitmap, anim);
-                            /*
-                            Palette.generateAsync(bitmap, new Palette.PaletteAsyncListener() {
-                                @Override
-                                public void onGenerated(Palette palette) {
-                                    // Here's your generated palette
-
-                                    holder.rlItemLegend.setBackgroundColor(
-                                            palette.getLightVibrantColor(R.color.text_blue_grey_darker));
-
-                                    holder.rlItemLegend.setVisibility(View.VISIBLE);
-                                }
-                            });
-                            */
-                        }
-                    });
-
-            setAnimation(((AntLookupViewHolder) holder).itemContainer, position);
-        } else {
-            ((AntLookupViewHolder)holder).ivItemDrawable.setImageDrawable(
-                    ContextCompat.getDrawable(
-                            context, R.drawable.ic_person_dark));
-        }
-
-        setAnimation(((AntLookupViewHolder)holder).itemContainer, position);
-
-        final String finalAttributesStr = attributesStr;
-        ((AntLookupViewHolder)holder).itemShare.setOnClickListener(new View.OnClickListener() {
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onClick(View v) {
-
-                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Found him!");
-                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,
-                        item.getDescription() + "\n\n" + finalAttributesStr
-                                + context.getString(R.string.share_intent_footer));
-
-                context.startActivity(Intent.createChooser(shareIntent, "AntMobile"));
-            }
-        });
-
-        ((AntLookupViewHolder)holder).itemWeb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("http://paginas.fe.up.pt/~rcamorim/ant"));
-                context.startActivity(i);
-            }
-        });
-
-        ((AntLookupViewHolder)holder).itemMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (SigarraAttribute attr : item.getAttributes()) {
-                    if (attr.getLabel().equals(context.getString(R.string.entry_entity_room))) {
-                        String url = "http://maps.google.com/maps?daddr="+ attr.getValue() + ", Faculdade de Engenharia da Universidade do Porto";
-                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,  Uri.parse(url));
-                        context.startActivity(intent);
-                        return;
-                    }
+            public void onResponse(JSONObject response) {
+                Decoration responseObject;
+                try {
+                    Data responseData = new Gson().fromJson(response.get("data").toString(), Data.class);
+                    responseObject = responseData.getDecorations();
+                } catch (JSONException e) {
+                    Log.e("JSON", e.getMessage());
+                    return;
                 }
+
+                //Set item attributes in the display
+                String attributesString = "";
+                HashMap<String, String> attributes = new HashMap<>();
+                for (ResponseAttribute rt : responseObject.getAttributes()) {
+                    attributes.put(rt.getLabel(), rt.getValue().toString());
+                    attributesString += "<b>" + rt.getLabel() + ":</b> " +
+                            rt.getValue() + "<br />";
+                }
+
+
+                if (attributes.containsKey("Faculdade")) {
+                    ((AntLookupViewHolder)holder).tvItemRole.setVisibility(View.VISIBLE);
+                    ((AntLookupViewHolder)holder).tvItemRole.setText(attributes.get("Faculdade"));
+                }
+
+                if (attributes.containsKey("Sítio")) {
+                    ((AntLookupViewHolder)holder).tvWebpage.setVisibility(View.VISIBLE);
+                    ((AntLookupViewHolder)holder).tvWebpage.setText(Html.fromHtml("<a href=" + attributes.get("Sítio") + "/>"));
+                }
+
+                if (attributes.containsKey("Sala")) {
+                    ((AntLookupViewHolder)holder).tvRoom.setVisibility(View.VISIBLE);
+                    ((AntLookupViewHolder)holder).tvRoom.setText(attributes.get("Sala"));
+                }
+
+
+
+                for (ArrayList<ResponseAttribute> arr : responseObject.getLevelTwoAttributes()) {
+                    for (ResponseAttribute rAttr : arr) {
+                        attributesString += "<b>" + rAttr.getLabel() + ":</b> " +
+                                rAttr.getValue() + "<br />";
+                    }
+
+                    attributesString += "<br />";
+                }
+
+                ((AntLookupViewHolder)holder).tvItemAttributes.setText(Html.fromHtml(attributesString));
+
+                //We can include the cookie here to enable access to some restricted photos
+                Glide.with(context).load(responseObject.getPhoto())
+                        .asBitmap()
+                        .centerCrop()
+                        .animate(android.R.anim.fade_in)
+                        .into(new BitmapImageViewTarget(((AntLookupViewHolder) holder).ivItemDrawable) {
+                            @Override
+                            public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
+
+                                ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.VISIBLE);
+                                super.onResourceReady(bitmap, anim);
+
+                            }
+
+                            @Override
+                            public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                                ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.GONE);
+                                super.onLoadFailed(e, errorDrawable);
+                            }
+                        });
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("ASDAS", "aSAD");
             }
         });
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req);
+        setAnimation(((AntLookupViewHolder) holder).itemContainer, position);
     }
 
 
     @Override
     public int getItemViewType(int position) {
-
         return 0;
     }
 
@@ -179,26 +180,22 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         private TextView tvItemName;
         private TextView tvItemAttributes;
-        private ProgressBar pbItemScore;
+        private  TextView tvItemRole;
+        private TextView tvWebpage;
+        private TextView tvRoom;
         private ImageView ivItemDrawable;
         private CardView itemContainer;
-
-        private ImageButton itemMap;
-        private ImageButton itemWeb;
-        private ImageButton itemShare;
 
         public AntLookupViewHolder(View rowView) {
             super(rowView);
 
-            tvItemName = (TextView) rowView.findViewById(R.id.ant_item_name);
-            tvItemAttributes = (TextView) rowView.findViewById(R.id.ant_item_category);
-            ivItemDrawable = (ImageView) rowView.findViewById(R.id.ant_item_photo);
-            pbItemScore = (ProgressBar) rowView.findViewById(R.id.item_score);
+            tvItemName = (TextView) rowView.findViewById(R.id.item_name);
+            tvItemAttributes = (TextView) rowView.findViewById(R.id.item_attributes);
+            ivItemDrawable = (ImageView) rowView.findViewById(R.id.item_photo);
+            tvWebpage = (TextView) rowView.findViewById(R.id.item_webpage);
             itemContainer = (CardView) rowView.findViewById(R.id.item_container);
-
-            itemMap = (ImageButton) rowView.findViewById(R.id.item_action_map);
-            itemWeb = (ImageButton) rowView.findViewById(R.id.item_action_info);
-            itemShare = (ImageButton) rowView.findViewById(R.id.item_action_share);
+            tvItemRole = (TextView) rowView.findViewById(R.id.item_role);
+            tvRoom = (TextView) rowView.findViewById(R.id.item_room);
 
             rowView.setOnClickListener(this);
             rowView.setOnLongClickListener(this);
@@ -224,4 +221,5 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             lastPosition = position;
         }
     }
+
 }
