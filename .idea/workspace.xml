@@ -10,45 +10,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40e76325-3425-4008-a158-8f205b70564a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/models/Data.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/models/Decoration.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/models/ResponseAttribute.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/models/SearchResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_23_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/cardview_v7_23_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/design_23_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_23_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_annotations_23_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_23_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values/themes.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/values-v21/themes.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/cardview_v7_22_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_3_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/palette_v7_21_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_22_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_22_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/models/SigarraIndividual.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-v21/styles.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values-w820dp/dimens.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/SearchFragment.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/models/SigarraAttribute.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/models/EntityType.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/adapters/AntLookupItemAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/adapters/AntLookupItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/ant_response_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/ant_response_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/antmobile.iml" afterPath="$PROJECT_DIR$/antmobile.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/floatingactionbutton_1_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/floatingactionbutton_1_3_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="antmobile.iws" />
@@ -2148,7 +2109,13 @@
       <option name="project" value="LOCAL" />
       <updated>1438192054997</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Changed theme to match material design using the material design.&#10;Updated code handling to ensure compatibility with the new API.&#10;Updated item layout to include different available attributes.&#10;Removed old- unused classes&#10;Added tab navigation to differentiate between students, staff and rooms (for now) (still ongoing)">
+      <created>1449170882825</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1449170882825</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2202,7 +2169,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Removed test packages as they weren't being used. Adde option to share the selected record and to open the associated webpage (this will be later available as soon as it is returned in the results)" />
     <MESSAGE value="Lowered minimum api level to api 16 (maybe can be lowered again as it didn't show any conflits) Added new app icon. removed unnecessary icon in the initial screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lowered minimum api level to api 16 (maybe can be lowered again as it didn't show any conflits) Added new app icon. removed unnecessary icon in the initial screen" />
+    <MESSAGE value="Changed theme to match material design using the material design.&#10;Updated code handling to ensure compatibility with the new API.&#10;Updated item layout to include different available attributes.&#10;Removed old- unused classes&#10;Added tab navigation to differentiate between students, staff and rooms (for now) (still ongoing)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed theme to match material design using the material design.&#10;Updated code handling to ensure compatibility with the new API.&#10;Updated item layout to include different available attributes.&#10;Removed old- unused classes&#10;Added tab navigation to differentiate between students, staff and rooms (for now) (still ongoing)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
