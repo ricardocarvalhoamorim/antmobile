@@ -61,16 +61,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:src="@drawable/ic_search"
-        app:backgroundTint="@color/colorPrimary"
-        android:layout_gravity="end|bottom"
-        app:layout_behavior="pt.up.fe.infolab.ricardo.antmobile.adapters.ScrollingFABBehavior"
-        app:layout_anchorGravity="bottom|right|end"/>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
@@ -79,6 +70,17 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
     </android.support.v4.view.ViewPager>
+
+    <android.support.design.widget.FloatingActionButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:src="@drawable/ic_search"
+    app:backgroundTint="@color/colorPrimary"
+    android:layout_gravity="end|bottom"
+    app:layout_behavior="pt.up.fe.infolab.ricardo.antmobile.adapters.ScrollingFABBehavior"
+    app:layout_anchorGravity="bottom|right|end"/>
 
 
 </android.support.design.widget.CoordinatorLayout>
