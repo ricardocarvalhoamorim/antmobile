@@ -11,4 +11,5 @@
     <string name="volley_error">Our parsing library made a mistake… maybe the API is down…</string>
     <string name="share_intent_footer"><![CDATA[\\n\\n Source: ant.fe.up.pt, José Devezas & Ricardo Amorim]]></string>
     <string name="bad_response">Hey man, all I got was en empty response. Not my fault k? Naughty Ant is naughty. Never though I\'d say this, but try sigarra.</string>
+    <string name="query_canceled">Hey bae, whacha doin\'? So...I need some info to send to ant...</string>
 </resources>

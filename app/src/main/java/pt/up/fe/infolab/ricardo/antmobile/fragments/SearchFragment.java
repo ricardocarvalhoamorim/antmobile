@@ -1,20 +1,16 @@
 package pt.up.fe.infolab.ricardo.antmobile.fragments;
 
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -26,7 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
-import com.melnykov.fab.FloatingActionButton;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
@@ -34,20 +30,18 @@ import java.util.ArrayList;
 
 import pt.up.fe.infolab.ricardo.antmobile.AppController;
 import pt.up.fe.infolab.ricardo.antmobile.R;
-import pt.up.fe.infolab.ricardo.antmobile.activities.MainActivity;
 import pt.up.fe.infolab.ricardo.antmobile.adapters.AntLookupItemAdapter;
+import pt.up.fe.infolab.ricardo.antmobile.interfaces.OnQueryReadyInterface;
 import pt.up.fe.infolab.ricardo.antmobile.models.SearchResult;
 
-/**
- * Created by ricardo on 12/3/15.
- */
-public class SearchFragment extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject> {
+public class SearchFragment extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject>, OnQueryReadyInterface{
 
     private AntLookupItemAdapter mAdapter;
     private ArrayList<SearchResult> lookupItems;
     private RecyclerView rvLookupItems;
+    private LinearLayout introMessage;
+    private SwipeRefreshLayout swLayout;
 
-    private final String baseQuery = "http://ant.fe.up.pt/search.json?";
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -56,18 +50,32 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (savedInstanceState != null &&
+                savedInstanceState.containsKey("items")) {
+            lookupItems = new Gson().fromJson(savedInstanceState.getString("items"), new TypeToken<ArrayList<SearchResult>>() {
+            }.getType());
 
+        } else {
+            lookupItems = new ArrayList<>();
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
         final View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
         rvLookupItems = (RecyclerView) rootView.findViewById(R.id.rv_lookup_items);
-        lookupItems = new ArrayList<>();
+        introMessage = (LinearLayout) rootView.findViewById(R.id.intro_layout);
+        swLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_layout);
+
+        if (lookupItems.isEmpty())
+            introMessage.setVisibility(View.VISIBLE);
+        else
+            introMessage.setVisibility(View.GONE);
+
 
         rootView.findViewById(R.id.intro_logo).setOnLongClickListener(new View.OnLongClickListener() {
             @Override
@@ -90,87 +98,23 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         rvLookupItems.setAdapter(mAdapter);
         rvLookupItems.setLayoutManager(layoutManager);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchQueryDialog();
+                dispatchQuery();
             }
         });
 
-        fab.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                ((FloatingActionButton)rootView.findViewById(R.id.fab)).hide(true);
-                return false;
-            }
-        });
         fab.show(true);
+        */
         return rootView;
-    }
-
-    /**
-     * Inflates a dialog asking for query elements to search in the ant platform
-     * and adds the request to the queue if applicable
-     */
-    private void dispatchQueryDialog() {
-        lookupItems.clear();
-        mAdapter.notifyDataSetChanged();
-
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-        alertDialog.setTitle(getString(R.string.query_input_title));
-        alertDialog.setMessage(getString(R.string.query_input_message));
-
-        final EditText input = new EditText(getActivity());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        input.setLayoutParams(lp);
-        input.setText("Ricardo Amorim");
-        alertDialog.setView(input);
-        alertDialog.setIcon(ContextCompat.getDrawable(
-                getActivity(),
-                R.drawable.ic_ant));
-
-
-        alertDialog.setPositiveButton(android.R.string.ok,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        String query = "";
-                        query = input.getText().toString();
-                        if (query.equals("")) {
-                            setFeedbackMessage(getString(R.string.no_query), R.drawable.ic_ant);
-                        } else {
-
-                            Uri builtUri = Uri.parse(baseQuery)
-                                    .buildUpon()
-                                    .appendQueryParameter("q", query)
-                                    .appendQueryParameter("num", "50")
-                                    .build();
-
-                            String queryURL = builtUri.toString();
-
-                            JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, queryURL, null, SearchFragment.this, SearchFragment.this);
-
-                            // Adding request to request queue
-                            AppController.getInstance().addToRequestQueue(req);
-                        }
-                    }
-                });
-
-        alertDialog.setNegativeButton(android.R.string.cancel,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        //TODO: maybe some feedback?
-                    }
-                });
-
-
-        alertDialog.show();
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
+        swLayout.setRefreshing(false);
         VolleyLog.e("Volley", "" + error.getMessage());
         Toast.makeText(getActivity(),
                 getString(R.string.volley_error), Toast.LENGTH_SHORT).show();
@@ -178,6 +122,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
 
     @Override
     public void onResponse(JSONObject response) {
+        swLayout.setRefreshing(false);
         Log.d("", response.toString());
 
         if (response.length() == 0) {
@@ -202,7 +147,8 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         mAdapter = new AntLookupItemAdapter(lookupItems, getActivity());
         mAdapter.notifyDataSetChanged();
 
-        getActivity().findViewById(R.id.intro_layout).setVisibility(View.GONE);
+
+        setFeedbackMessage("", 0);
         rvLookupItems.setVisibility(View.VISIBLE);
         rvLookupItems.setAdapter(mAdapter);
     }
@@ -211,10 +157,17 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     /**
      * Sets the home image to visible and applies the recieved message to the textview.
      * An drawable resource should be passed
-     * @param message Message to display
+     * @param message Message to display. If empty, the view will be hidden
      * @param imageResource image to apply below the text
      */
     private void setFeedbackMessage(String message, int imageResource) {
+
+        if (message.isEmpty()) {
+            introMessage.setVisibility(View.GONE);
+            return;
+        }
+
+        introMessage.setVisibility(View.VISIBLE);
         getActivity().findViewById(R.id.intro_layout).setVisibility(View.VISIBLE);
         ((TextView) getActivity().findViewById(R.id.intro_message)).setText(message);
 
@@ -223,6 +176,18 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
                 ContextCompat.getDrawable(
                         getActivity(),
                         imageResource));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+
+        outState.putString("items", new Gson().toJson(lookupItems));
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onQueryReady(String extra) {
+        dispatchQuery(extra);
     }
 
     /**
@@ -238,5 +203,27 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         public void setData(ArrayList<SearchResult> data) {
             this.data = data;
         }
+    }
+
+    /**
+     * Inflates a dialog asking for query elements to search in the ant platform
+     * and adds the request to the queue if applicable
+     */
+    private void dispatchQuery(String extra) {
+        lookupItems.clear();
+        mAdapter.notifyDataSetChanged();
+
+        ((SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_layout)).setRefreshing(true);
+        String baseQuery = "http://ant.fe.up.pt/search.json?";
+        Uri builtUri = Uri.parse(baseQuery)
+                .buildUpon()
+                .appendQueryParameter("q", extra)
+                .appendQueryParameter("num", "50")
+                .build();
+
+        String queryURL = builtUri.toString();
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, queryURL, null, SearchFragment.this, SearchFragment.this);
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req);
     }
 }
