@@ -41,6 +41,8 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     private RecyclerView rvLookupItems;
     private LinearLayout introMessage;
     private SwipeRefreshLayout swLayout;
+    private String mCurrentTag;
+    private ImageView ivLogo;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -50,15 +52,16 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null &&
-                savedInstanceState.containsKey("items")) {
+        if (savedInstanceState != null
+                && savedInstanceState.containsKey("items")) {
+
             lookupItems = new Gson().fromJson(savedInstanceState.getString("items"), new TypeToken<ArrayList<SearchResult>>() {
             }.getType());
-
         } else {
             lookupItems = new ArrayList<>();
         }
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,29 +70,33 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
 
         final View rootView = inflater.inflate(R.layout.fragment_search, container, false);
 
+        Bundle args = getArguments();
+        mCurrentTag = args.getString("current_tag");
+
         rvLookupItems = (RecyclerView) rootView.findViewById(R.id.rv_lookup_items);
         introMessage = (LinearLayout) rootView.findViewById(R.id.intro_layout);
         swLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_layout);
+        ivLogo = (ImageView) rootView.findViewById(R.id.intro_logo);
+        swLayout.setRefreshing(false);
+        swLayout.setEnabled(false);
 
+        int drawableID = R.drawable.ic_ant;
+        switch (mCurrentTag) {
+            case "funcionário":
+                drawableID = R.drawable.ic_staff;
+                break;
+            case "estudante":
+                drawableID = R.drawable.ic_book;
+                break;
+            case "sala":
+                drawableID = R.drawable.ic_room;
+        }
+
+        ivLogo.setImageDrawable(ContextCompat.getDrawable(getActivity(),drawableID));
         if (lookupItems.isEmpty())
             introMessage.setVisibility(View.VISIBLE);
         else
             introMessage.setVisibility(View.GONE);
-
-
-        rootView.findViewById(R.id.intro_logo).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                ImageView ivIntro = (ImageView) rootView.findViewById(R.id.intro_logo);
-                ivIntro.setImageDrawable(
-                        ContextCompat.getDrawable(
-                                getActivity(),
-                                R.drawable.ic_developer_full_color));
-
-                Toast.makeText(getActivity(), "Full Power unleashed, take care", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });
 
         mAdapter = new AntLookupItemAdapter(lookupItems, getActivity());
         mAdapter.notifyDataSetChanged();
@@ -97,25 +104,13 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvLookupItems.setAdapter(mAdapter);
         rvLookupItems.setLayoutManager(layoutManager);
-
-        /*
-        FloatingActionButton fab = (FloatingActionButton) rootView.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dispatchQuery();
-            }
-        });
-
-        fab.show(true);
-        */
         return rootView;
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
         swLayout.setRefreshing(false);
-        VolleyLog.e("Volley", "" + error.getMessage());
+        Log.e("VOLLEY", "" + error.getMessage());
         Toast.makeText(getActivity(),
                 getString(R.string.volley_error), Toast.LENGTH_SHORT).show();
     }
@@ -180,14 +175,37 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-
         outState.putString("items", new Gson().toJson(lookupItems));
+        outState.putString("current_tag", mCurrentTag);
         super.onSaveInstanceState(outState);
     }
 
     @Override
-    public void onQueryReady(String extra) {
-        dispatchQuery(extra);
+    public void onQueryReady(String query, String extra) {
+
+        if (!extra.equals(mCurrentTag))
+            return;
+
+        if (extra.equals("todos")) {
+            dispatchQuery(query);
+            return;
+        }
+
+        if (extra.equals(mCurrentTag))
+            dispatchQuery(query + " tipoentidade:" + extra);
+    }
+
+    /**
+     * Creates a new fragment and sets its tag to the received string
+     * @param tag tag to apply
+     * @return searc fragment
+     */
+    public static SearchFragment newInstance(String tag) {
+        SearchFragment f = new SearchFragment();
+        Bundle args = new Bundle();
+        args.putString("current_tag", tag);
+        f.setArguments(args);
+        return f;
     }
 
     /**
@@ -213,7 +231,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         lookupItems.clear();
         mAdapter.notifyDataSetChanged();
 
-        ((SwipeRefreshLayout) getActivity().findViewById(R.id.swipe_layout)).setRefreshing(true);
+        swLayout.setRefreshing(true);
         String baseQuery = "http://ant.fe.up.pt/search.json?";
         Uri builtUri = Uri.parse(baseQuery)
                 .buildUpon()

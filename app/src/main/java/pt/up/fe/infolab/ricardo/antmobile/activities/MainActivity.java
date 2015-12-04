@@ -2,6 +2,8 @@ package pt.up.fe.infolab.ricardo.antmobile.activities;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -20,19 +22,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pt.up.fe.infolab.ricardo.antmobile.R;
+import pt.up.fe.infolab.ricardo.antmobile.fragments.AboutFragment;
+import pt.up.fe.infolab.ricardo.antmobile.fragments.CanteenFragment;
+import pt.up.fe.infolab.ricardo.antmobile.fragments.ParkingFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.SearchFragment;
 
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private TabLayout.Tab activeTab;
+    private ViewPagerAdapter adapter;
+    private FloatingActionButton floatingActionButton;
+    private ViewPager viewPager;
+
+    private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -40,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         activeTab = tabLayout.getTabAt(0);
         tabLayout.setOnTabSelectedListener(this);
 
-
-        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         floatingActionButton.show();
 
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -53,29 +63,38 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new SearchFragment(), "todos");
-        adapter.addFragment(new SearchFragment(), "estudante");
-        adapter.addFragment(new SearchFragment(), "funcionário");
-        adapter.addFragment(new SearchFragment(), "sala");
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(SearchFragment.newInstance("todos"), "todos");
+        adapter.addFragment(SearchFragment.newInstance("estudante"), "estudante");
+        adapter.addFragment(SearchFragment.newInstance("funcionário"), "funcionário");
+        adapter.addFragment(SearchFragment.newInstance("sala"), "sala");
+        adapter.addFragment(new CanteenFragment(), "Ementa");
+        adapter.addFragment(new ParkingFragment(), "Estacionamento");
+        adapter.addFragment(new AboutFragment(), "Sobre nós");
         viewPager.setAdapter(adapter);
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         activeTab = tab;
+
+        viewPager.setCurrentItem(tab.getPosition());
+        //last position, no need for the fab button
+        if (activeTab.getPosition() >= adapter.getCount() - 3) {
+            floatingActionButton.hide();
+            appBarLayout.setExpanded(false);
+
+        } else {
+            floatingActionButton.show();
+            appBarLayout.setExpanded(true);
+        }
     }
 
     @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
+    public void onTabUnselected(TabLayout.Tab tab) {}
 
     @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
-
+    public void onTabReselected(TabLayout.Tab tab) {}
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -120,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
         input.setLayoutParams(lp);
-        input.setText("Ricardo Amorim");
+        input.setHint("Termos a pesquisar");
         alertDialog.setView(input);
         alertDialog.setIcon(ContextCompat.getDrawable(
                 this,
@@ -138,15 +157,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                             if (activeTab == null)
                                 return;
 
+                            if (adapter.getItem(activeTab.getPosition()) instanceof SearchFragment)
+                                ((SearchFragment) adapter.getItem(activeTab.getPosition())).onQueryReady(query, "" + activeTab.getText());
 
-                            List<Fragment> fragments = getSupportFragmentManager().getFragments();
-                            if (! (fragments.get(activeTab.getPosition()) instanceof SearchFragment))
-                                return;
-
-                            if (activeTab.getPosition() == 0) {
-                                ((SearchFragment) fragments.get(activeTab.getPosition())).onQueryReady(query);
-                            }
-                            ((SearchFragment) fragments.get(activeTab.getPosition())).onQueryReady(query + " tipoentidade:" + activeTab.getText());
                         }
                     }
                 });
@@ -155,12 +168,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
-                        //setFeedbackMessage(getString(R.string.query_canceled), R.drawable.ic_ant);
                     }
                 });
-
-
         alertDialog.show();
     }
-
 }

@@ -1,6 +1,7 @@
 package pt.up.fe.infolab.ricardo.antmobile.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -31,6 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -71,7 +73,6 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         final SearchResult item = items.get(position);
         ((AntLookupViewHolder)holder).tvItemName.setText(item.getDescription());
 
-        //TODO: make item related requests
         String baseQuery = "http://ant.fe.up.pt/search/decorator/metadata.json?";
         Uri builtUri = Uri.parse(baseQuery)
                 .buildUpon()
@@ -80,6 +81,16 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                 .build();
 
         String queryURL = builtUri.toString();
+
+        ((AntLookupViewHolder)holder).itemContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = item.getLink();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                context.startActivity(i);
+            }
+        });
 
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
             @Override
@@ -104,8 +115,19 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
                 if (attributes.containsKey("Faculdade")) {
+
+                    String formattedRoles = attributes.get("Faculdade");
+
+                    if (formattedRoles.startsWith("[")) {
+                        String[] roles = formattedRoles.replaceAll("[<>\\[\\]-]", "").split(",");
+                        formattedRoles = "";
+                        for (String s : roles) {
+                            formattedRoles += s.replaceFirst(" ", "") + "\n";
+                        }
+                    }
+                    attributes.put("Faculdade", formattedRoles);
                     ((AntLookupViewHolder)holder).tvItemRole.setVisibility(View.VISIBLE);
-                    ((AntLookupViewHolder)holder).tvItemRole.setText(attributes.get("Faculdade"));
+                    ((AntLookupViewHolder)holder).tvItemRole.setText(formattedRoles);
                 }
 
                 if (attributes.containsKey("Sítio")) {
@@ -118,12 +140,11 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                     ((AntLookupViewHolder)holder).tvRoom.setText(attributes.get("Sala"));
                 }
 
-
-
                 for (ArrayList<ResponseAttribute> arr : responseObject.getLevelTwoAttributes()) {
                     for (ResponseAttribute rAttr : arr) {
                         attributesString += "<b>" + rAttr.getLabel() + ":</b> " +
                                 rAttr.getValue() + "<br />";
+
                     }
 
                     attributesString += "<br />";
@@ -139,10 +160,8 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                         .into(new BitmapImageViewTarget(((AntLookupViewHolder) holder).ivItemDrawable) {
                             @Override
                             public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
-
                                 ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.VISIBLE);
                                 super.onResourceReady(bitmap, anim);
-
                             }
 
                             @Override
@@ -155,7 +174,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("ASDAS", "aSAD");
+                Log.e("VOLLEY", error.toString());
             }
         });
 

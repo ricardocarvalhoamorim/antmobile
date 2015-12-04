@@ -38,12 +38,15 @@
 
                 <ImageButton
                     android:id="@+id/intro_logo"
+                    android:clickable="false"
                     android:scaleType="fitXY"
                     style="@style/Base.Widget.AppCompat.Button.Borderless"
                     android:layout_gravity="center"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:src="@drawable/ic_ant"/>
+                    android:src="@drawable/ic_ant"
+                    android:tint="@color/colorPrimary"
+                    />
 
                 <TextView
                     android:id="@+id/intro_message"

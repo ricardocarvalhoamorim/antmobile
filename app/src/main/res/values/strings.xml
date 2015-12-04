@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AntMobile</string>
+    <string name="app_name">ANTMobile</string>
     <string name="action_settings">Settings</string>
     <string name="entry_entity_code">Código</string>
     <string name="entry_entity_room">Sala</string>
@@ -11,5 +11,12 @@
     <string name="volley_error">Our parsing library made a mistake… maybe the API is down…</string>
     <string name="share_intent_footer"><![CDATA[\\n\\n Source: ant.fe.up.pt, José Devezas & Ricardo Amorim]]></string>
     <string name="bad_response">Hey man, all I got was en empty response. Not my fault k? Naughty Ant is naughty. Never though I\'d say this, but try sigarra.</string>
-    <string name="query_canceled">Hey bae, whacha doin\'? So...I need some info to send to ant...</string>
+    <string name="query_canceled">Hey bae, whacha doin\'? So…I need some info to send to ant…</string>
+    <string name="image_placeholder">image placeholder</string>
+    <string name="loading">A carregar…</string>
+    <string name="update">Atualizar</string>
+    <string name="about">
+        <p>O ANT Mobile é uma aplicação para explorar recursos no sistema de informação da Univesridade do Porto. Foi desenvolvido para permitir o acesso simplificado à informação disponibilizada nos vários sistemas de informação da universidade.</p><p>Toda a informação apresentada é extraída a partir da plataforma ANT (ant.fe.up.pt). Esta plataforma é o fruto de uma bolsa de investigação a cargo de José Devezas (josedevezas.com). Atualmente, é utilizado como caso de estudo central o sistema de informação SIGARRA, sendo, contudo, o nosso objetivo evoluir para um sistema modular e mais genérico, criando ramificações em várias subáreas de investigação, permitindo contribuições adicionais
+            aplicadas ao nosso caso de estudo em particular, mas também experimentações diretamente suportadas pela nossa plataforma (o ANT Mobile é um exemplo concreto destas experimentações).</p><p>Não aceitamos cartão de crédito</p>
+    </string>
 </resources>

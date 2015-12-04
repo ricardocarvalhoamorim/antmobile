@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+    }
     compileSdkVersion 23
-    buildToolsVersion "22.0.1"
-
+    buildToolsVersion '23.0.1'
     defaultConfig {
         applicationId "pt.up.fe.infolab.ricardo.antmobile"
         minSdkVersion 16
