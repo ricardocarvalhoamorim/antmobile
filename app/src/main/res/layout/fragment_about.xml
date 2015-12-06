@@ -5,14 +5,28 @@
     android:background="@color/colorPrimary"
     >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="20dp"
+            android:textColor="@android:color/white"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:text="@string/app_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@drawable/ant"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp" />
+    </RelativeLayout>
     <TextView
-        android:drawableTop="@drawable/ant"
         android:id="@+id/text_about"
         android:padding="10dp"
         android:autoLink="web"
         android:fontFamily="sans-serif-thin"
         android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse"
-        android:text="@string/about"
+        android:text="..."
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
