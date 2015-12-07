@@ -14,12 +14,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -39,10 +37,12 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     private AntLookupItemAdapter mAdapter;
     private ArrayList<SearchResult> lookupItems;
     private RecyclerView rvLookupItems;
-    private LinearLayout introMessage;
     private SwipeRefreshLayout swLayout;
     private String mCurrentTag;
-    private ImageView ivLogo;
+
+    private LinearLayout fragmentMessageRoot;
+    private TextView userMessage;
+    private ImageView userMessageImg;
 
     public SearchFragment() {
         // Required empty public constructor
@@ -74,29 +74,32 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         mCurrentTag = args.getString("current_tag");
 
         rvLookupItems = (RecyclerView) rootView.findViewById(R.id.rv_lookup_items);
-        introMessage = (LinearLayout) rootView.findViewById(R.id.intro_layout);
+        fragmentMessageRoot = (LinearLayout) rootView.findViewById(R.id.intro_layout);
         swLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_layout);
-        ivLogo = (ImageView) rootView.findViewById(R.id.intro_logo);
+        userMessage = (TextView) rootView.findViewById(R.id.intro_message);
+        userMessageImg = (ImageView) rootView.findViewById(R.id.intro_logo);
         swLayout.setRefreshing(false);
         swLayout.setEnabled(false);
 
-        int drawableID = R.drawable.ic_ant;
         switch (mCurrentTag) {
+            case "todos":
+                setFeedbackMessage(getString(R.string.message_all), R.drawable.ic_ant);
+                break;
             case "funcionário":
-                drawableID = R.drawable.ic_staff;
+                setFeedbackMessage(getString(R.string.message_staff), R.drawable.ic_staff);
                 break;
             case "estudante":
-                drawableID = R.drawable.ic_book;
+                setFeedbackMessage(getString(R.string.message_students), R.drawable.ic_book);
                 break;
             case "sala":
-                drawableID = R.drawable.ic_room;
+                setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_room);
+                break;
         }
 
-        ivLogo.setImageDrawable(ContextCompat.getDrawable(getActivity(),drawableID));
         if (lookupItems.isEmpty())
-            introMessage.setVisibility(View.VISIBLE);
+            fragmentMessageRoot.setVisibility(View.VISIBLE);
         else
-            introMessage.setVisibility(View.GONE);
+            fragmentMessageRoot.setVisibility(View.GONE);
 
         mAdapter = new AntLookupItemAdapter(lookupItems, getActivity());
         mAdapter.notifyDataSetChanged();
@@ -111,8 +114,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     public void onErrorResponse(VolleyError error) {
         swLayout.setRefreshing(false);
         Log.e("VOLLEY", "" + error.getMessage());
-        Toast.makeText(getActivity(),
-                getString(R.string.volley_error), Toast.LENGTH_SHORT).show();
+        setFeedbackMessage(getString(R.string.volley_error), R.drawable.ic_sad);
     }
 
     @Override
@@ -158,16 +160,13 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     private void setFeedbackMessage(String message, int imageResource) {
 
         if (message.isEmpty()) {
-            introMessage.setVisibility(View.GONE);
+            fragmentMessageRoot.setVisibility(View.GONE);
             return;
         }
 
-        introMessage.setVisibility(View.VISIBLE);
-        getActivity().findViewById(R.id.intro_layout).setVisibility(View.VISIBLE);
-        ((TextView) getActivity().findViewById(R.id.intro_message)).setText(message);
-
-        ImageView ivIntro = (ImageView) getActivity().findViewById(R.id.intro_logo);
-        ivIntro.setImageDrawable(
+        fragmentMessageRoot.setVisibility(View.VISIBLE);
+        userMessage.setText(message);
+        userMessageImg.setImageDrawable(
                 ContextCompat.getDrawable(
                         getActivity(),
                         imageResource));

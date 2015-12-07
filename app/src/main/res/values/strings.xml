@@ -3,16 +3,22 @@
     <string name="action_settings">Definições</string>
     <string name="entry_entity_code">Código</string>
     <string name="entry_entity_room">Sala</string>
-    <string name="no_query">Honey, I need something to look for. You gotta give me that k? Here\'s an example: José Devezas</string>
-    <string name="query_input_title">Tell me your wishes</string>
-    <string name="query_input_message">Looking for someone? a girl you saw yesterday? Ant Helps you</string>
-    <string name="no_results">No results were found. This is not the person you are looking for.</string>
-    <string name="parsing_failed">Failed to parse response</string>
-    <string name="volley_error">Our parsing library made a mistake… maybe the API is down…</string>
-    <string name="share_intent_footer"><![CDATA[\\n\\n Source: ant.fe.up.pt, José Devezas & Ricardo Amorim]]></string>
-    <string name="bad_response">Hey man, all I got was en empty response. Not my fault k? Naughty Ant is naughty. Never though I\'d say this, but try sigarra.</string>
-    <string name="query_canceled">Hey bae, whacha doin\'? So…I need some info to send to ant…</string>
+    <string name="no_results">Não há resultados (wuuut?) This is not the droid you\'re looking for. Tenta escrever a pesquisa de outra forma; por vezes mudar os termos de pesquisa pode ajudar.</string>
+    <string name="parsing_failed">Não consigo perceber o que o servidor disse…</string>
+    <string name="volley_error">Olha, houve um erro. Está tudo bem, mas talvez a API esteja em baixo… Ou então alguém não tem net… </string>
+    <string name="bad_response">O servidor está a apanhar sol nas ilhas Phi Phi. A resposta que recebi é num dialecto que não me assiste. Tenta outra vez pf</string>
     <string name="image_placeholder">image placeholder</string>
     <string name="loading">A carregar…</string>
     <string name="update">Atualizar</string>
+
+    <string name="dialog_search_title">Pesquisar</string>
+    <string name="dialog_search_header">Diz-me que procuras?</string>
+    <string name="dialog_search_hint">Termos a pesquisar</string>
+    <string name="dialog_search_body">O ANT mobile pode pesquisar qualquer entidade, desde que esteja registada. Exemplos de pesquisa: I123, Nicky Minaj, …</string>
+
+    <string name="message_all">Pesquisa generalizada. Deixa o ANT decidir o que é mais relevante nos resultados, não vais ter nenhuma desilusão</string>
+    <string name="message_staff">Funcionários… Esta categoria muy nobre também inclui professores e bolseiros de investigação</string>
+    <string name="message_students">Pesquisa de estudantes. Uma ex-namorada? Um colega desaparecido? É por aqui</string>
+    <string name="message_rooms">Procuras um computador computadores? Ou uma sala vazia para meditar? This is the way</string>
+    <string name="empty_query">Tens de me dar algo para pesquisar</string>
 </resources>

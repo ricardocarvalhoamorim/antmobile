@@ -1,21 +1,28 @@
 package pt.up.fe.infolab.ricardo.antmobile.activities;
 
-import android.content.DialogInterface;
+import android.app.Dialog;
+import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private ViewPagerAdapter adapter;
     private FloatingActionButton floatingActionButton;
     private ViewPager viewPager;
+    private EditText etQuery;
+    private CardView cvSearch;
+    private String lastQuery;
 
     private AppBarLayout appBarLayout;
 
@@ -46,18 +56,31 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         setupViewPager(viewPager);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        etQuery = (EditText) findViewById(R.id.app_search);
+        ImageView btClearQuery = (ImageView) findViewById(R.id.clear_search);
+        cvSearch = (CardView) findViewById(R.id.card_search);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+
         tabLayout.setupWithViewPager(viewPager);
         activeTab = tabLayout.getTabAt(0);
         tabLayout.setOnTabSelectedListener(this);
 
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
-        appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
         floatingActionButton.show();
-
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 promptDialog();
+            }
+        });
+
+        btClearQuery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (lastQuery != null)
+                    lastQuery = "";
+
+                etQuery.setText("");
             }
         });
     }
@@ -130,46 +153,87 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
      */
     private void promptDialog() {
 
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setTitle(getString(R.string.query_input_title));
-        alertDialog.setMessage(getString(R.string.query_input_message));
+        if (lastQuery != null)
+            etQuery.setText(lastQuery);
 
-        final EditText input = new EditText(this);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        input.setLayoutParams(lp);
-        input.setHint("Termos a pesquisar");
-        alertDialog.setView(input);
-        alertDialog.setIcon(ContextCompat.getDrawable(
-                this,
-                R.drawable.ic_ant));
+        floatingActionButton.hide();
+
+        cvSearch.setVisibility(View.VISIBLE);
+        etQuery.requestFocus();
+        etQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    dispatchSearch(etQuery.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(etQuery, InputMethodManager.SHOW_IMPLICIT);
+        //etQuery.setShowSoftInputOnFocus(true);
+
+/*
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_search);
+
+        dialog.setTitle(getString(R.string.dialog_search_title));
+        final EditText etInput = (EditText) dialog.findViewById(R.id.dialog_input);
+
+        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Cancelado", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        etInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    dispatchSearch(etInput.getText().toString());
+                    dialog.dismiss();
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
-        alertDialog.setPositiveButton(android.R.string.ok,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        String query = "";
-                        query = input.getText().toString();
-                        if (query.equals("")) {
-                            Toast.makeText(MainActivity.this, "Please provide at least 1 term", Toast.LENGTH_SHORT).show();
-                        } else {
-                            if (activeTab == null)
-                                return;
+        dialog.findViewById(R.id.dialog_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-                            if (adapter.getItem(activeTab.getPosition()) instanceof SearchFragment)
-                                ((SearchFragment) adapter.getItem(activeTab.getPosition())).onQueryReady(query, "" + activeTab.getText());
+                String query = ((EditText) dialog.findViewById(R.id.dialog_input)).getText().toString();
+                if (query.equals("")) {
+                    etInput.setError(getString(R.string.empty_query));
+                    return;
+                }
+                dispatchSearch(query);
+                dialog.dismiss();
+            }
+        });
 
-                        }
-                    }
-                });
+        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        dialog.show();
+        */
+    }
 
-        alertDialog.setNegativeButton(android.R.string.cancel,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(MainActivity.this, "Cancelled", Toast.LENGTH_SHORT).show();
-                    }
-                });
-        alertDialog.show();
+    private void dispatchSearch(String query) {
+        if (activeTab == null)
+            return;
+
+        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(etQuery.getWindowToken(), 0);
+
+        cvSearch.setVisibility(View.INVISIBLE);
+        floatingActionButton.show();
+
+        lastQuery = query;
+        if (adapter.getItem(activeTab.getPosition()) instanceof SearchFragment)
+            ((SearchFragment) adapter.getItem(activeTab.getPosition())).onQueryReady(query, "" + activeTab.getText());
     }
 }

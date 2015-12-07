@@ -18,7 +18,9 @@
                 android:id="@+id/swipe_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <android.support.v7.widget.RecyclerView
+                    tools:listitem="@layout/ant_response_item"
                     android:id="@+id/rv_lookup_items"
                     android:visibility="visible"
                     android:divider="@android:color/transparent"
@@ -30,9 +32,9 @@
 
             </android.support.v4.widget.SwipeRefreshLayout>
             <LinearLayout
+                android:layout_marginTop="40dp"
                 android:id="@+id/intro_layout"
                 android:orientation="vertical"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
@@ -58,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:text="Kajir helps you find your way, search for staff, students and girls you'd like to meet. Tap the search button to start..."
+                    android:text="@string/message_all"
                     />
 
             </LinearLayout>
