@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="true"
     >
 
     <ImageView
@@ -25,15 +27,149 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/parking_data"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            >
+
+            <TextView
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:text="P1 Permanentes"
+                android:layout_gravity="center"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/p1_slots"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ProgressBar
+                    android:id="@+id/p1_progress"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:progress="67"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            >
+
+            <TextView
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:text="P3 Alunos"
+                android:layout_gravity="center"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/p3_slots"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                    android:text="20 Lugares disponíveis"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ProgressBar
+                    android:id="@+id/p3_progress"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            >
+
+            <TextView
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                android:text="P4 N. Permanentes"
+                android:layout_gravity="center"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/p4_slots"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+                    android:text="20 Lugares disponíveis"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <ProgressBar
+                    android:id="@+id/p4_progress"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:progress="67"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/parking_refresh"
         style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:text="Atualizar"
+        android:text="@string/update"
         android:layout_margin="20dp"
         android:layout_gravity="center"
-        android:gravity="center_vertical"
+        android:gravity="bottom|center_vertical"
         android:padding="20dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        />
 </LinearLayout>

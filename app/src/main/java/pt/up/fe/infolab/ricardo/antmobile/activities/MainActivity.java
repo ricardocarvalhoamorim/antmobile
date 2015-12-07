@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         etQuery = (EditText) findViewById(R.id.app_search);
-        ImageView btClearQuery = (ImageView) findViewById(R.id.clear_search);
         cvSearch = (CardView) findViewById(R.id.card_search);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
@@ -71,16 +70,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             @Override
             public void onClick(View v) {
                 promptDialog();
-            }
-        });
-
-        btClearQuery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (lastQuery != null)
-                    lastQuery = "";
-
-                etQuery.setText("");
             }
         });
     }
@@ -106,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         if (activeTab.getPosition() >= adapter.getCount() - 3) {
             floatingActionButton.hide();
             appBarLayout.setExpanded(false);
-
         } else {
             floatingActionButton.show();
             appBarLayout.setExpanded(true);
@@ -173,53 +161,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(etQuery, InputMethodManager.SHOW_IMPLICIT);
-        //etQuery.setShowSoftInputOnFocus(true);
-
-/*
-        final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_search);
-
-        dialog.setTitle(getString(R.string.dialog_search_title));
-        final EditText etInput = (EditText) dialog.findViewById(R.id.dialog_input);
-
-        dialog.findViewById(R.id.dialog_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Cancelado", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-
-        etInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    dispatchSearch(etInput.getText().toString());
-                    dialog.dismiss();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-
-        dialog.findViewById(R.id.dialog_ok).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String query = ((EditText) dialog.findViewById(R.id.dialog_input)).getText().toString();
-                if (query.equals("")) {
-                    etInput.setError(getString(R.string.empty_query));
-                    return;
-                }
-                dispatchSearch(query);
-                dialog.dismiss();
-            }
-        });
-
-        dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        dialog.show();
-        */
     }
 
     private void dispatchSearch(String query) {
