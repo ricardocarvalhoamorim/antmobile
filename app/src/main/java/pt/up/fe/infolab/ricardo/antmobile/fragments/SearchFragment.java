@@ -223,8 +223,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     }
 
     /**
-     * Inflates a dialog asking for query elements to search in the ant platform
-     * and adds the request to the queue if applicable
+     * adds the request to the queue if applicable
      */
     private void dispatchQuery(String extra) {
         lookupItems.clear();
@@ -235,7 +234,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         Uri builtUri = Uri.parse(baseQuery)
                 .buildUpon()
                 .appendQueryParameter("q", extra)
-                .appendQueryParameter("num", "50")
+                .appendQueryParameter("num", "20")
                 .build();
 
         String queryURL = builtUri.toString();
