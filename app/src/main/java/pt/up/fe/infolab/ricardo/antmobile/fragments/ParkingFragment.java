@@ -80,6 +80,7 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
         if (parkItems != null && !parkItems.isEmpty()) {
             attacthParkInfo();
         } else {
+            tvParkingStatus.setVisibility(View.VISIBLE);
             llParkingData.setVisibility(View.INVISIBLE);
             AppController.getInstance().addToRequestQueue(getParkRequest());
         }
@@ -87,6 +88,7 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
         rootView.findViewById(R.id.parking_refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tvParkingStatus.setVisibility(View.VISIBLE);
                 btRefresh.setEnabled(false);
                 llParkingData.setVisibility(View.INVISIBLE);
                 AppController.getInstance().addToRequestQueue(getParkRequest());
@@ -110,6 +112,7 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
 
         llParkingData.setVisibility(View.VISIBLE);
         btRefresh.setEnabled(true);
+        tvParkingStatus.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -117,6 +120,7 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
 
         llParkingData.setVisibility(View.INVISIBLE);
         Log.e("VOLLEY", error.toString());
+        tvParkingStatus.setVisibility(View.VISIBLE);
         tvParkingStatus.setText(getString(R.string.volley_error));
         btRefresh.setEnabled(true);
     }

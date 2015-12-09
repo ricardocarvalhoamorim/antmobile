@@ -59,6 +59,7 @@
 
                 <TextView
                     android:id="@+id/p1_slots"
+                    android:text="20 Lugares disponíveis"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -68,7 +69,6 @@
                     android:id="@+id/p1_progress"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
-                    android:progress="67"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -151,7 +151,6 @@
                     android:id="@+id/p4_progress"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
-                    android:progress="67"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
