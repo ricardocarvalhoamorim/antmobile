@@ -97,14 +97,17 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
         return rootView;
     }
 
+    /**
+     * Sets the layout to show the received (or available) data
+     */
     private void attacthParkInfo() {
         int p1Free = parkItems.get(0).getLugares();
         int p3Free = parkItems.get(1).getLugares();
         int p4Free = parkItems.get(2).getLugares();
 
-        p1Progress.setProgress((p1Free/500)*100);
-        p3Progress.setProgress((p3Free/325)*100);
-        p4Progress.setProgress((p4Free/71)*100);
+        p1Progress.setProgress(p1Free);
+        p3Progress.setProgress(p3Free);
+        p4Progress.setProgress(p4Free);
 
         p1Status.setText(p1Free + " Livres");
         p3Status.setText(p3Free + " Livres");

@@ -10,9 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40e76325-3425-4008-a158-8f205b70564a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/AboutFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/AboutFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_parking.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_parking.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -45,24 +43,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="fragment_parking.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fragment_parking.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_parking.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9285715">
-              <caret line="17" column="4" selection-start-line="17" selection-start-column="0" selection-end-line="27" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.48913044">
+              <caret line="155" column="35" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ParkingFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ParkingFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.59137577">
-              <caret line="90" column="58" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -1605,8 +1603,8 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/AboutFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_parking.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_parking.xml" />
       </list>
     </option>
   </component>
@@ -1800,7 +1798,7 @@
     <property name="android.sdk.path" value="$PROJECT_DIR$/../tools/android-sdk" />
     <property name="recentsLimit" value="5" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="1275133901956" />
-    <property name="DEBUGGABLE_DEVICE" value="lge-nexus_5-078df80c2821b071" />
+    <property name="DEBUGGABLE_DEVICE" value="bq-edison_2_quad_core-1275133901956" />
     <property name="DEBUGGABLE_PROCESS" value="pt.up.fe.infolab.ricardo.antmobile" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="OverrideImplement.combined" value="true" />
@@ -2078,7 +2076,13 @@
       <option name="project" value="LOCAL" />
       <updated>1449493900697</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated about section's text. Fixed parking fragment not hiding loading info">
+      <created>1449697357726</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1449697357726</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2093,8 +2097,8 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2518195" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3352181" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2503639" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3352181" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44267052" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -2107,7 +2111,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46463546" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4643377" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2136,11 +2140,12 @@
     <MESSAGE value="Finished implementing tab layout to differentiate between entity types.&#10;Added tabs to import data from canteen and park ocupation.&#10;Added missing drawable resources.&#10;" />
     <MESSAGE value="Fixed fab button not being visible on lower api levels" />
     <MESSAGE value="Added missing drawables (don't know why they were not included in the last commit).&#10;Changed about section to fix layout issues&#10;Changed search action to show the top bar instead of a dialog.&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added missing drawables (don't know why they were not included in the last commit).&#10;Changed about section to fix layout issues&#10;Changed search action to show the top bar instead of a dialog.&#10;" />
+    <MESSAGE value="Updated about section's text. Fixed parking fragment not hiding loading info" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated about section's text. Fixed parking fragment not hiding loading info" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="80" />
+      <option name="time" value="81" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
@@ -2148,11 +2153,8 @@
         <watch expression="canteenItems" language="JAVA" custom="" />
       </configuration>
       <configuration name="Remote">
-        <watch expression="parkItems" language="JAVA" custom="" />
         <watch expression="(p4Free/71)*100" language="JAVA" custom="" />
-        <watch expression="(p3Free/325)*100" language="JAVA" custom="" />
-        <watch expression="(p1Free/500)*100" language="JAVA" custom="" />
-        <watch expression="p1Progress.getMax()" language="JAVA" custom="" />
+        <watch expression="p4Free/71.0" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -2551,21 +2553,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_parking.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9285715">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="0" selection-end-line="27" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.59137577">
-          <caret line="90" column="58" selection-start-line="90" selection-start-column="58" selection-end-line="90" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.48913044">
+          <caret line="155" column="35" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
           <folding />
         </state>
       </provider>
