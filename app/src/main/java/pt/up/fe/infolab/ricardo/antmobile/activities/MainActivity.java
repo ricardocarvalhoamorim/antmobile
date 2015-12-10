@@ -3,6 +3,7 @@ package pt.up.fe.infolab.ricardo.antmobile.activities;
 import android.app.Dialog;
 import android.content.Context;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -25,14 +26,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import pt.up.fe.infolab.ricardo.antmobile.AppController;
 import pt.up.fe.infolab.ricardo.antmobile.R;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.AboutFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.CanteenFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.ParkingFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.SearchFragment;
+import pt.up.fe.infolab.ricardo.antmobile.models.SearchResult;
 
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
@@ -44,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private EditText etQuery;
     private CardView cvSearch;
     private String lastQuery;
+    private Map<String, ArrayList<SearchResult>> queryResults;
 
     private AppBarLayout appBarLayout;
 
