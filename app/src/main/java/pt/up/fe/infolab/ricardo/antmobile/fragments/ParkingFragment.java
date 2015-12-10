@@ -32,7 +32,6 @@ import pt.up.fe.infolab.ricardo.antmobile.models.ParkItem;
 public class ParkingFragment extends Fragment implements Response.ErrorListener, Response.Listener<JSONArray> {
 
     private ArrayList<ParkItem> parkItems;
-    private TextView tvParkingStatus;
     private Button btRefresh;
 
     private ProgressBar p1Progress;
@@ -64,7 +63,6 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_parking, container, false);
-        tvParkingStatus = (TextView) rootView.findViewById(R.id.parking_status);
         btRefresh = (Button) rootView.findViewById(R.id.parking_refresh);
 
         p1Progress = (ProgressBar) rootView.findViewById(R.id.p1_progress);
@@ -80,7 +78,6 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
         if (parkItems != null && !parkItems.isEmpty()) {
             attacthParkInfo();
         } else {
-            tvParkingStatus.setVisibility(View.VISIBLE);
             llParkingData.setVisibility(View.INVISIBLE);
             AppController.getInstance().addToRequestQueue(getParkRequest());
         }
@@ -88,7 +85,8 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
         rootView.findViewById(R.id.parking_refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvParkingStatus.setVisibility(View.VISIBLE);
+
+                btRefresh.setText(getString(R.string.loading));
                 btRefresh.setEnabled(false);
                 llParkingData.setVisibility(View.INVISIBLE);
                 AppController.getInstance().addToRequestQueue(getParkRequest());
@@ -114,17 +112,14 @@ public class ParkingFragment extends Fragment implements Response.ErrorListener,
         p4Status.setText(p4Free + " Livres");
 
         llParkingData.setVisibility(View.VISIBLE);
+        btRefresh.setText(getString(R.string.update));
         btRefresh.setEnabled(true);
-        tvParkingStatus.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
         llParkingData.setVisibility(View.INVISIBLE);
         Log.e("VOLLEY", error.toString());
-        tvParkingStatus.setVisibility(View.VISIBLE);
-        tvParkingStatus.setText(getString(R.string.volley_error));
         btRefresh.setEnabled(true);
     }
 

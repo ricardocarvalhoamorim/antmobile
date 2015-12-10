@@ -60,6 +60,8 @@ public class CanteenFragment extends Fragment implements Response.ErrorListener,
             @Override
             public void onClick(View v) {
                 btRefresh.setEnabled(false);
+                btRefresh.setText(getString(R.string.loading));
+                tvCanteenStatus.setVisibility(View.INVISIBLE);
                 AppController.getInstance().addToRequestQueue(getCanteenRequest());
             }
         });
@@ -75,12 +77,17 @@ public class CanteenFragment extends Fragment implements Response.ErrorListener,
 
         if (canteenItems == null || canteenItems.isEmpty()) {
             btRefresh.setEnabled(false);
+            tvCanteenStatus.setVisibility(View.INVISIBLE);
+            btRefresh.setText(getString(R.string.loading));
             AppController.getInstance().addToRequestQueue(getCanteenRequest());
             return;
         }
 
         String responseString = "";
         for (Menu m : canteenItems) {
+            if (m.getMenu().isEmpty())
+                continue;
+
             responseString += "<h1>" + m.getName() + "</h1>";
 
             //each top level array corresponds to one day
@@ -99,6 +106,8 @@ public class CanteenFragment extends Fragment implements Response.ErrorListener,
         }
 
         tvCanteenStatus.setText(Html.fromHtml(responseString));
+        tvCanteenStatus.setVisibility(View.VISIBLE);
+        btRefresh.setText(getString(R.string.update));
         btRefresh.setEnabled(true);
     }
 
@@ -115,6 +124,7 @@ public class CanteenFragment extends Fragment implements Response.ErrorListener,
     public void onErrorResponse(VolleyError error) {
         Log.e("VOLLEY", error.toString());
         tvCanteenStatus.setText("Alguém fez asneira. Tens net por acaso?");
+        tvCanteenStatus.setVisibility(View.VISIBLE);
         btRefresh.setEnabled(true);
     }
 
