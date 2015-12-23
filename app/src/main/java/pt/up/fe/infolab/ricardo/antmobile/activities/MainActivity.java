@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private FloatingActionButton floatingActionButton;
     private ViewPager viewPager;
     private EditText etQuery;
-    private CardView cvSearch;
+    //private CardView cvSearch;
     private String lastQuery;
     private Map<String, ArrayList<SearchResult>> queryResults;
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         etQuery = (EditText) findViewById(R.id.app_search);
-        cvSearch = (CardView) findViewById(R.id.card_search);
+        //cvSearch = (CardView) findViewById(R.id.card_search);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
 
@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         floatingActionButton.hide();
 
-        cvSearch.setVisibility(View.VISIBLE);
+        //cvSearch.setVisibility(View.VISIBLE);
         etQuery.requestFocus();
         etQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(etQuery.getWindowToken(), 0);
 
-        cvSearch.setVisibility(View.INVISIBLE);
+        //cvSearch.setVisibility(View.INVISIBLE);
         floatingActionButton.show();
 
         lastQuery = query;

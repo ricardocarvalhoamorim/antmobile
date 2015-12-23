@@ -5,12 +5,22 @@
     android:background="@color/colorPrimary"
     >
 
+
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/canteen_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </android.support.v7.widget.RecyclerView>
 
         <ImageView
             android:contentDescription="@string/image_placeholder"
