@@ -15,9 +15,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private ViewPager viewPager;
     private EditText etQuery;
     private String lastQuery;
-    private Button clearSearch;
     private boolean searchCleared;
 
     private AppBarLayout appBarLayout;
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         searchView = (CardView) findViewById(R.id.search_view);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
-        clearSearch = (Button) findViewById(R.id.clear_search);
 
         tabLayout.setupWithViewPager(viewPager);
         activeTab = tabLayout.getTabAt(0);
@@ -71,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
             }
         });
 
-        clearSearch.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.clear_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (searchCleared) {
@@ -107,11 +104,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         //last position, no need for the fab button
         if (activeTab.getPosition() >= adapter.getCount() - 3) {
             floatingActionButton.hide();
-            searchView.setVisibility(View.GONE);
+            searchView.setVisibility(View.INVISIBLE);
             appBarLayout.setExpanded(false);
         } else {
             floatingActionButton.show();
-            searchView.setVisibility(View.VISIBLE);
             appBarLayout.setExpanded(true);
         }
     }

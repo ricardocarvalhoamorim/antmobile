@@ -50,8 +50,8 @@
                     android:layout_height="wrap_content"
                     card_view:cardCornerRadius="2dp"
                     android:layout_margin="10dp"
-                    android:elevation="8sp"
                     android:visibility="invisible"
+                    android:elevation="8sp"
                     android:id="@+id/search_view"
                     app:layout_collapseMode="none"
                     app:behavior_overlapTop="64dp"
@@ -74,10 +74,10 @@
                             android:layout_weight=".9"
                             />
 
-                        <Button
+                        <ImageButton
                             android:id="@+id/clear_search"
                             style="@style/Base.Widget.AppCompat.Button.Borderless"
-                            android:background="@android:drawable/ic_menu_close_clear_cancel"
+                            android:src="@android:drawable/ic_menu_close_clear_cancel"
                             android:layout_width="0dp"
                             android:layout_weight=".1"
                             android:layout_height="match_parent" />
