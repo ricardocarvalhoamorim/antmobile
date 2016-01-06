@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 import pt.up.fe.infolab.ricardo.antmobile.AppController;
 import pt.up.fe.infolab.ricardo.antmobile.R;
+import pt.up.fe.infolab.ricardo.antmobile.activities.MainActivity;
 import pt.up.fe.infolab.ricardo.antmobile.adapters.AntLookupItemAdapter;
 import pt.up.fe.infolab.ricardo.antmobile.interfaces.OnQueryReadyInterface;
 import pt.up.fe.infolab.ricardo.antmobile.models.SearchResult;
@@ -54,12 +55,12 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
 
         if (savedInstanceState != null
                 && savedInstanceState.containsKey("items")) {
-
             lookupItems = new Gson().fromJson(savedInstanceState.getString("items"), new TypeToken<ArrayList<SearchResult>>() {
             }.getType());
         } else {
             lookupItems = new ArrayList<>();
         }
+
     }
 
 
@@ -96,17 +97,22 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
                 break;
         }
 
-        if (lookupItems.isEmpty())
-            fragmentMessageRoot.setVisibility(View.VISIBLE);
-        else
-            fragmentMessageRoot.setVisibility(View.GONE);
-
         mAdapter = new AntLookupItemAdapter(lookupItems, getActivity());
         mAdapter.notifyDataSetChanged();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvLookupItems.setAdapter(mAdapter);
         rvLookupItems.setLayoutManager(layoutManager);
+
+        if (lookupItems.isEmpty()) {
+            fragmentMessageRoot.setVisibility(View.VISIBLE);
+
+            if (!((MainActivity)getActivity()).getActiveQuery().isEmpty()) {
+                dispatchQuery(((MainActivity)getActivity()).getActiveQuery());
+            }
+        } else
+            fragmentMessageRoot.setVisibility(View.GONE);
+
         return rootView;
     }
 
@@ -144,7 +150,6 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         mAdapter = new AntLookupItemAdapter(lookupItems, getActivity());
         mAdapter.notifyDataSetChanged();
 
-
         setFeedbackMessage("", 0);
         rvLookupItems.setVisibility(View.VISIBLE);
         rvLookupItems.setAdapter(mAdapter);
@@ -180,18 +185,12 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     }
 
     @Override
-    public void onQueryReady(String query, String extra) {
+    public void onQueryReady(String query) {
 
-        if (!extra.equals(mCurrentTag))
+        if (mCurrentTag == null)
             return;
 
-        if (extra.equals("todos")) {
-            dispatchQuery(query);
-            return;
-        }
-
-        if (extra.equals(mCurrentTag))
-            dispatchQuery(query + " tipoentidade:" + extra);
+        dispatchQuery(query);
     }
 
     /**
@@ -226,6 +225,15 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
      * adds the request to the queue if applicable
      */
     private void dispatchQuery(String extra) {
+
+        Log.e("QUERY", extra);
+        if (!this.isAdded()) {
+            return;
+        }
+
+        if (!mCurrentTag.equals("todos"))
+            extra += " tipoentidade:" + mCurrentTag;
+
         lookupItems.clear();
         mAdapter.notifyDataSetChanged();
 

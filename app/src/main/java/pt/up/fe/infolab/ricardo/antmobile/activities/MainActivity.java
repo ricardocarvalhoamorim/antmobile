@@ -182,7 +182,19 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         floatingActionButton.show();
 
         lastQuery = query;
+
+        /*
         if (adapter.getItem(activeTab.getPosition()) instanceof SearchFragment)
             ((SearchFragment) adapter.getItem(activeTab.getPosition())).onQueryReady(query, "" + activeTab.getText());
+        */
+
+        for (int i = 0; i < adapter.getCount(); ++i) {
+            if (adapter.getItem(i) instanceof SearchFragment)
+                ((SearchFragment) adapter.getItem(i)).onQueryReady(query);
+        }
+    }
+
+    public String getActiveQuery() {
+        return this.lastQuery == null ? "" : this.lastQuery;
     }
 }
