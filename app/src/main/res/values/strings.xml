@@ -3,23 +3,22 @@
     <string name="action_settings">Definições</string>
     <string name="entry_entity_code">Código</string>
     <string name="entry_entity_room">Sala</string>
-    <string name="no_results">Não há resultados (wuuut?) This is not the droid you\'re looking for. Tenta escrever a pesquisa de outra forma; por vezes mudar os termos de pesquisa pode ajudar.</string>
-    <string name="parsing_failed">Não consigo perceber o que o servidor disse…</string>
-    <string name="volley_error">Olha, houve um erro. Está tudo bem, mas talvez a API esteja em baixo… Ou então alguém não tem net… </string>
-    <string name="bad_response">O servidor está a apanhar sol nas ilhas Phi Phi. A resposta que recebi é num dialecto que não me assiste. Tenta outra vez pf</string>
+    <string name="no_results">Não há resultados para esta pesquisa… Por vezes mudar os termos de pesquisa ou mudar a sua estrutura pode ajudar.</string>
+    <string name="parsing_failed">O servidor devolveu algo indecifrável…</string>
+    <string name="volley_error">Houve um erro. Está tudo bem, mas talvez a API esteja em baixo… Ou então não existe internet…</string>
+    <string name="bad_response">O servidor está a apanhar sol nas ilhas Phi Phi. A resposta que recebi é num dialecto indecifrável. Tente outra vez pf</string>
     <string name="image_placeholder">image placeholder</string>
     <string name="loading">A carregar…</string>
     <string name="update">Atualizar</string>
 
     <string name="dialog_search_title">Pesquisar</string>
-    <string name="dialog_search_header">Diz-me que procuras?</string>
+    <string name="dialog_search_header">O que procura?</string>
     <string name="dialog_search_hint">Termos a pesquisar</string>
-    <string name="dialog_search_body">O ANT mobile pode pesquisar qualquer entidade, desde que esteja registada. Exemplos de pesquisa: I123, Nicky Minaj, …</string>
+    <string name="dialog_search_body">O ANT mobile pode pesquisar qualquer entidade, desde que esteja registada nos sistemas de informação. Exemplos de pesquisa: I123, Nicky Minaj, …</string>
 
-    <string name="message_all">Pesquisa generalizada. Deixa o ANT decidir o que é mais relevante nos resultados, não vais ter nenhuma desilusão</string>
-    <string name="message_staff">Funcionários… Esta categoria muy nobre também inclui professores e bolseiros de investigação</string>
-    <string name="message_students">Pesquisa de estudantes. Uma ex-namorada? Um colega desaparecido? É por aqui</string>
-    <string name="message_rooms">Procuras um computador computadores? Ou uma sala vazia para meditar? This is the way</string>
-    <string name="empty_query">Tens de me dar algo para pesquisar</string>
-    <string name="updating">A carregar</string>
+    <string name="message_all">Pesquisa generalizada. O ANT decide o que é mais relevante de acordo com os termos da pesquisa.</string>
+    <string name="message_staff">Funcionários associados à Universidade. Inclui professores, bolseiros de investigação e investigadores externos (entre outras entidades desta categoria)</string>
+    <string name="message_students">Pesquisa de estudantes</string>
+    <string name="message_rooms">Salas, laboratórios e anfiteatros, com ou sem equipamentos como projetores e computadores.</string>
+    <string name="empty_query">A pesquisa deve incluir alguns termos</string>
 </resources>

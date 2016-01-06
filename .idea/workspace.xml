@@ -10,9 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40e76325-3425-4008-a158-8f205b70564a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/SearchFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/SearchFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="antmobile.iws" />
@@ -44,35 +43,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java">
+      <file leaf-file-name="ParkingFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.51724136">
-              <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2559#2707#0" expanded="true" />
-                <element signature="e#2706#2707#0" expanded="true" />
-                <element signature="e#3199#3200#0" expanded="true" />
-                <element signature="e#6958#6959#0" expanded="true" />
-                <element signature="e#7025#7026#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.0">
-              <caret line="77" column="57" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="57" />
-              <folding>
-                <element signature="e#3256#3284#0" expanded="true" />
-                <element signature="e#4896#4936#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.035856575">
+              <caret line="115" column="32" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1601,7 +1577,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/adapters/AntLookupItemAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/models/Menu.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/dialog_search.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_search.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/themes.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
@@ -1614,8 +1589,9 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_canteen.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/interfaces/OnQueryReadyInterface.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/SearchFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
       </list>
     </option>
   </component>
@@ -1677,22 +1653,8 @@
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="antmobile" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
+              <option name="myItemId" value="values" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1708,36 +1670,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ic_search_white_24dp.png" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="antmobile" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ic_search_black_24dp.png" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2005,7 +1937,7 @@
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="main&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/activity_main.xml&#10;searc&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/SearchFragment.java&#10;ca&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_canteen.xml&#10;par&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java&#10;frag&#9;PSI&#9;JAVA://pt.up.fe.infolab.ricardo.antmobile.fragments.CanteenFragment&#10;grad&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/build.gradle&#10;manife&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/AndroidManifest.xml&#10;about&#9;PSI&#9;JAVA://pt.up.fe.infolab.ricardo.antmobile.fragments.AboutFragment&#10;parki&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java&#10;mani&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/AndroidManifest.xml&#10;sear&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_search.xml&#10;value&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res/values/values.xml&#10;cante&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/CanteenFragment.java&#10;item&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/ant_response_item.xml&#10;dialo&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/dialog_search.xml&#10;string&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/values/strings.xml&#10;str&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/values/strings.xml&#10;mai&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java&#10;ma&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/activity_main.xml&#10;abou&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_about.xml&#10;ac&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/activity_main.xml&#10;cant&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/CanteenFragment.java&#10;ada&#9;PSI&#9;JAVA://pt.up.fe.infolab.ricardo.antmobile.adapters.AntLookupItemAdapter&#10;fra&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_about.xml&#10;seaf&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/SearchFragment.java&#10;color&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/values/colors.xml&#10;adap&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/adapters/AntLookupItemAdapter.java&#10;park&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_parking.xml&#10;clean&#9;ACTION&#9;ExternalSystem_81da114dantmobile81da114dclean&#10;sea&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_search.xml&#10;sync&#9;ACTION&#9;Android.SyncProject&#10;project str&#9;ACTION&#9;null&#10;manif&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+    <property name="SearchEverywhereHistoryKey" value="par&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java&#10;main&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/activity_main.xml&#10;searc&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/SearchFragment.java&#10;ca&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_canteen.xml&#10;frag&#9;PSI&#9;JAVA://pt.up.fe.infolab.ricardo.antmobile.fragments.CanteenFragment&#10;grad&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/build.gradle&#10;manife&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/AndroidManifest.xml&#10;about&#9;PSI&#9;JAVA://pt.up.fe.infolab.ricardo.antmobile.fragments.AboutFragment&#10;parki&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java&#10;mani&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/AndroidManifest.xml&#10;sear&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_search.xml&#10;value&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res/values/values.xml&#10;cante&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/CanteenFragment.java&#10;item&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/ant_response_item.xml&#10;dialo&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/dialog_search.xml&#10;string&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/values/strings.xml&#10;str&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/values/strings.xml&#10;mai&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java&#10;ma&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/activity_main.xml&#10;abou&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_about.xml&#10;ac&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/activity_main.xml&#10;cant&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/CanteenFragment.java&#10;ada&#9;PSI&#9;JAVA://pt.up.fe.infolab.ricardo.antmobile.adapters.AntLookupItemAdapter&#10;fra&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_about.xml&#10;seaf&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/SearchFragment.java&#10;color&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/values/colors.xml&#10;adap&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/adapters/AntLookupItemAdapter.java&#10;park&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_parking.xml&#10;clean&#9;ACTION&#9;ExternalSystem_81da114dantmobile81da114dclean&#10;sea&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/src/main/res/layout/fragment_search.xml&#10;sync&#9;ACTION&#9;Android.SyncProject&#10;project str&#9;ACTION&#9;null&#10;manif&#9;FILE&#9;file:///home/ricardo/Development/antmobile/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -2309,7 +2241,19 @@
       <option name="project" value="LOCAL" />
       <updated>1452090298243</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Search view now has a button to clear the search and hide the panel (2nd tap). Minor improvements">
+      <created>1452093148109</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1452093148109</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Changed clear search to fix drawable issues. Search view now keeps state when scrolling outside search views">
+      <created>1452093459712</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1452093459712</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2324,7 +2268,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40261152" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4243743" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22582619" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297062" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44178456" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2372,7 +2316,9 @@
     <MESSAGE value="Fixed canteen showing empty results. Updated behaviour in the canteen management and parking" />
     <MESSAGE value="Updated top bar behaviour to keep the search query visible while scrolling (ongoing). Added new drawables for search icon" />
     <MESSAGE value="Now each fragment loads up the active query as soon as it is created (query is applied to all entities upon search action)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now each fragment loads up the active query as soon as it is created (query is applied to all entities upon search action)" />
+    <MESSAGE value="Search view now has a button to clear the search and hide the panel (2nd tap). Minor improvements" />
+    <MESSAGE value="Changed clear search to fix drawable issues. Search view now keeps state when scrolling outside search views" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed clear search to fix drawable issues. Search view now keeps state when scrolling outside search views" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2422,11 +2368,12 @@
           <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2559#2707#0" expanded="true" />
-            <element signature="e#2706#2707#0" expanded="true" />
-            <element signature="e#3199#3200#0" expanded="true" />
-            <element signature="e#6958#6959#0" expanded="true" />
-            <element signature="e#7025#7026#0" expanded="true" />
+            <element signature="e#2432#2580#0" expanded="true" />
+            <element signature="e#2579#2580#0" expanded="true" />
+            <element signature="e#2643#3093#0" expanded="true" />
+            <element signature="e#3092#3093#0" expanded="true" />
+            <element signature="e#6804#6805#0" expanded="true" />
+            <element signature="e#6871#6872#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2518,11 +2465,12 @@
           <caret line="78" column="11" selection-start-line="78" selection-start-column="11" selection-end-line="78" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2559#2707#0" expanded="true" />
-            <element signature="e#2706#2707#0" expanded="true" />
-            <element signature="e#3199#3200#0" expanded="true" />
-            <element signature="e#6958#6959#0" expanded="true" />
-            <element signature="e#7025#7026#0" expanded="true" />
+            <element signature="e#2432#2580#0" expanded="true" />
+            <element signature="e#2579#2580#0" expanded="true" />
+            <element signature="e#2643#3093#0" expanded="true" />
+            <element signature="e#3092#3093#0" expanded="true" />
+            <element signature="e#6804#6805#0" expanded="true" />
+            <element signature="e#6871#6872#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2540,11 +2488,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2559#2707#0" expanded="true" />
-            <element signature="e#2706#2707#0" expanded="true" />
-            <element signature="e#3199#3200#0" expanded="true" />
-            <element signature="e#6958#6959#0" expanded="true" />
-            <element signature="e#7025#7026#0" expanded="true" />
+            <element signature="e#2432#2580#0" expanded="true" />
+            <element signature="e#2579#2580#0" expanded="true" />
+            <element signature="e#2643#3093#0" expanded="true" />
+            <element signature="e#3092#3093#0" expanded="true" />
+            <element signature="e#6804#6805#0" expanded="true" />
+            <element signature="e#6871#6872#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2594,13 +2543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/LruBitmapCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -2737,24 +2679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28301886">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="115" column="32" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_canteen.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2817,27 +2741,52 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.0">
-          <caret line="77" column="57" selection-start-line="77" selection-start-column="45" selection-end-line="77" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.6835443">
+          <caret line="69" column="75" selection-start-line="69" selection-start-column="75" selection-end-line="69" selection-end-column="75" />
           <folding>
-            <element signature="e#3256#3284#0" expanded="true" />
-            <element signature="e#4896#4936#0" expanded="true" />
+            <element signature="e#3333#3361#0" expanded="true" />
+            <element signature="e#4971#5011#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16806723">
+          <caret line="8" column="149" selection-start-line="8" selection-start-column="149" selection-end-line="8" selection-end-column="149" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/LruBitmapCache.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035856575">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51724136">
-          <caret line="74" column="21" selection-start-line="74" selection-start-column="21" selection-end-line="74" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.38247013">
+          <caret line="106" column="22" selection-start-line="106" selection-start-column="12" selection-end-line="106" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2559#2707#0" expanded="true" />
-            <element signature="e#2706#2707#0" expanded="true" />
-            <element signature="e#3199#3200#0" expanded="true" />
-            <element signature="e#6958#6959#0" expanded="true" />
-            <element signature="e#7025#7026#0" expanded="true" />
+            <element signature="e#2432#2580#0" expanded="true" />
+            <element signature="e#2579#2580#0" expanded="true" />
+            <element signature="e#2643#3093#0" expanded="true" />
+            <element signature="e#3092#3093#0" expanded="true" />
+            <element signature="e#6804#6805#0" expanded="true" />
+            <element signature="e#6871#6872#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/pt/up/fe/infolab/ricardo/antmobile/fragments/ParkingFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.035856575">
+          <caret line="115" column="32" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

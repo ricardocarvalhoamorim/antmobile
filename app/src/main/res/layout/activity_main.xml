@@ -67,6 +67,7 @@
                             android:imeOptions="actionSearch"
                             android:inputType="text"
                             android:layout_height="wrap_content"
+                            android:textColorHint="@color/colorPrimaryFaded"
                             android:hint="@string/dialog_search_hint"
                             android:selectAllOnFocus="true"
                             android:singleLine="true"
