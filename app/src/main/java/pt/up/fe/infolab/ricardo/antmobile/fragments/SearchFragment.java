@@ -226,13 +226,10 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
      */
     private void dispatchQuery(String extra) {
 
-        Log.e("QUERY", extra);
-        if (!this.isAdded()) {
-            return;
-        }
-
         if (!mCurrentTag.equals("todos"))
             extra += " tipoentidade:" + mCurrentTag;
+
+        Log.e("QUERY", extra);
 
         lookupItems.clear();
         mAdapter.notifyDataSetChanged();
