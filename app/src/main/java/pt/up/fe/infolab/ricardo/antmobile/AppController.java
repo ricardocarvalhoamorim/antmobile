@@ -12,8 +12,33 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
+import org.acra.ACRA;
+import org.acra.ReportField;
+import org.acra.ReportingInteractionMode;
+import org.acra.annotation.ReportsCrashes;
+import org.acra.sender.HttpSender;
+
 import java.io.File;
 
+@ReportsCrashes(
+        formUri = "https://nauticast.cloudant.com/acra-antmobile/_design/acra-storage/_update/report",
+        reportType = HttpSender.Type.JSON,
+        httpMethod = HttpSender.Method.POST,
+        formUriBasicAuthLogin = "derlyiestartelloadvauzzl",
+        formUriBasicAuthPassword = "499a3b4f2b2c2db2635fcc5c42fe692233c2314f",
+        customReportContent = {
+                ReportField.APP_VERSION_CODE,
+                ReportField.APP_VERSION_NAME,
+                ReportField.ANDROID_VERSION,
+                ReportField.PACKAGE_NAME,
+                ReportField.REPORT_ID,
+                ReportField.BUILD,
+                ReportField.BRAND,
+                ReportField.STACK_TRACE
+        },
+        mode = ReportingInteractionMode.TOAST,
+        resToastText = R.string.crash_submitted
+)
 public class AppController extends Application {
 
     private static final String TAG = AppController.class
@@ -28,6 +53,7 @@ public class AppController extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        ACRA.init(this);
     }
 
     public static synchronized AppController getInstance() {
