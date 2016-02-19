@@ -56,7 +56,7 @@ public class CanteenFragment extends Fragment implements Response.ErrorListener,
             }
 
             if (savedInstanceState.containsKey("canteens")) {
-                canteens = new Gson().fromJson("canteens",
+                canteens = new Gson().fromJson(savedInstanceState.getString("canteens"),
                         new TypeToken<ArrayList<String>>() {}.getType());
             }
         }
@@ -248,5 +248,4 @@ public class CanteenFragment extends Fragment implements Response.ErrorListener,
             this.data = data;
         }
     }
-
 }
