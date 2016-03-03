@@ -45,7 +45,7 @@
             android:autoLink="web"
             android:fontFamily="sans-serif-thin"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
-            android:text="v0.7/2016\nJosé Devezas\nRicardo Amorim"
+            android:text="v0.9/2016\nJosé Devezas\nRicardo Amorim"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

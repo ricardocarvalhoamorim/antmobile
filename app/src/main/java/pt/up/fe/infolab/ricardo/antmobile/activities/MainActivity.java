@@ -71,10 +71,16 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         findViewById(R.id.clear_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (searchCleared) {
                     searchView.setVisibility(View.INVISIBLE);
-                    floatingActionButton.setVisibility(View.VISIBLE);
                     searchCleared = false;
+
+                    floatingActionButton.show();
+
+                    //hide keyboard
+                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(etQuery.getWindowToken(), 0);
                     return;
                 }
 

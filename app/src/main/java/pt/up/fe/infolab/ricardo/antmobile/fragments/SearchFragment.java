@@ -33,7 +33,7 @@ import pt.up.fe.infolab.ricardo.antmobile.adapters.AntLookupItemAdapter;
 import pt.up.fe.infolab.ricardo.antmobile.interfaces.OnQueryReadyInterface;
 import pt.up.fe.infolab.ricardo.antmobile.models.SearchResult;
 
-public class SearchFragment extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject>, OnQueryReadyInterface{
+public class SearchFragment extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject>, OnQueryReadyInterface {
 
     private AntLookupItemAdapter mAdapter;
     private ArrayList<SearchResult> lookupItems;
