@@ -25,6 +25,7 @@ import java.util.List;
 import pt.up.fe.infolab.ricardo.antmobile.R;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.AboutFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.CanteenFragment;
+import pt.up.fe.infolab.ricardo.antmobile.fragments.NewsFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.ParkingFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.SearchFragment;
 
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         adapter.addFragment(SearchFragment.newInstance("estudante"), "estudante");
         adapter.addFragment(SearchFragment.newInstance("funcionário"), "funcionário");
         adapter.addFragment(SearchFragment.newInstance("sala"), "sala");
+        adapter.addFragment(new NewsFragment(), "Últimas Notícias");
         adapter.addFragment(new CanteenFragment(), "Ementa");
         adapter.addFragment(new ParkingFragment(), "Estacionamento");
         adapter.addFragment(new AboutFragment(), "Sobre nós");
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         viewPager.setCurrentItem(tab.getPosition());
         //last position, no need for the fab button
-        if (activeTab.getPosition() >= adapter.getCount() - 3) {
+        if (activeTab.getPosition() >= adapter.getCount() - 4) {
             floatingActionButton.hide();
             searchView.setVisibility(View.INVISIBLE);
             appBarLayout.setExpanded(false);

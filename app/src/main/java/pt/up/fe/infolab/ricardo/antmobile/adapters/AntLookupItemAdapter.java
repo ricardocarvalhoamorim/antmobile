@@ -73,7 +73,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         final SearchResult item = items.get(position);
         ((AntLookupViewHolder)holder).tvItemName.setText(item.getDescription());
 
-        String baseQuery = "http://ant.fe.up.pt/search/decorator/metadata.json?";
+        String baseQuery = "http://172.30.9.217:3000/search/decorator/metadata.json?";
         Uri builtUri = Uri.parse(baseQuery)
                 .buildUpon()
                 .appendQueryParameter("entity", item.getUri().substring(item.getUri().indexOf('#') + 1))

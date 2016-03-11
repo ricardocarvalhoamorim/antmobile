@@ -95,6 +95,9 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
             case "sala":
                 setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_room);
                 break;
+            case "notícias":
+                setFeedbackMessage(getString(R.string.message_news), R.drawable.ic_room);
+                break;
         }
 
         mAdapter = new AntLookupItemAdapter(lookupItems, getActivity());
@@ -235,7 +238,8 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         mAdapter.notifyDataSetChanged();
 
         swLayout.setRefreshing(true);
-        String baseQuery = "http://ant.fe.up.pt/search.json?";
+        //http://172.30.9.217:3000
+        String baseQuery = "http://172.30.9.217:3000/search.json?";
         Uri builtUri = Uri.parse(baseQuery)
                 .buildUpon()
                 .appendQueryParameter("q", extra)

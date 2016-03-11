@@ -23,4 +23,6 @@
     <string name="empty_query">A pesquisa deve incluir alguns termos</string>
     <string name="no_menu">Não há nenhum menu disponível para este restaurante…</string>
     <string name="crash_submitted">Relatório de erros submetido</string>
+    <string name="message_news">Notícias da Universiade do Porto</string>
+    <string name="get_news">Obter notícias</string>
 </resources>
