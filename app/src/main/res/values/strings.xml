@@ -1,28 +1,52 @@
 <resources>
     <string name="app_name">ANT Mobile</string>
-    <string name="action_settings">Definições</string>
-    <string name="entry_entity_code">Código</string>
-    <string name="entry_entity_room">Sala</string>
-    <string name="no_results">Não há resultados para esta pesquisa… Por vezes mudar os termos de pesquisa ou mudar a sua estrutura pode ajudar.</string>
-    <string name="parsing_failed">O servidor devolveu algo indecifrável…</string>
-    <string name="volley_error">Houve um erro. Está tudo bem, mas talvez a API esteja em baixo… Ou então não existe internet…</string>
-    <string name="bad_response">O servidor está a apanhar sol nas ilhas Phi Phi. A resposta que recebi é num dialecto indecifrável. Tente outra vez pf</string>
+    <string name="action_settings">Settings</string>
+    <string name="entry_entity_code">Code</string>
+    <string name="entry_entity_room">Room</string>
+    <string name="no_results">No results found for this query… In some cases, change the query elements can be effective.</string>
+    <string name="parsing_failed">The server returned something I can not understand…</string>
+    <string name="volley_error">An error occurred. The API may be down for maintenance… Or someone doesn\'t have Internet…</string>
+    <string name="bad_response">The server is on holidays at the Phi Phi islands. The response I got was not expected. Please try again later.</string>
     <string name="image_placeholder">image placeholder</string>
-    <string name="loading">A carregar…</string>
-    <string name="update">Atualizar</string>
+    <string name="loading">Loading…</string>
+    <string name="update">Update</string>
 
-    <string name="dialog_search_title">Pesquisar</string>
-    <string name="dialog_search_header">O que procura?</string>
-    <string name="dialog_search_hint">Termos a pesquisar</string>
-    <string name="dialog_search_body">O ANT mobile pode pesquisar qualquer entidade, desde que esteja registada nos sistemas de informação. Exemplos de pesquisa: I123, Nicky Minaj, …</string>
+    <string name="dialog_search_title">Search</string>
+    <string name="dialog_search_header">What to look for?</string>
+    <string name="dialog_search_hint">Query</string>
+    <string name="dialog_search_body">Ant mobile can look up for any entity, provided it exists in the information system. Some examples of querys are "I123", "Nicky Minaj", …</string>
 
-    <string name="message_all">Pesquisa generalizada. O ANT decide o que é mais relevante de acordo com os termos da pesquisa.</string>
-    <string name="message_staff">Funcionários associados à Universidade. Inclui professores, bolseiros de investigação e investigadores externos (entre outras entidades desta categoria)</string>
-    <string name="message_students">Pesquisa de estudantes</string>
-    <string name="message_rooms">Salas, laboratórios e anfiteatros, com ou sem equipamentos como projetores e computadores.</string>
-    <string name="empty_query">A pesquisa deve incluir alguns termos</string>
-    <string name="no_menu">Não há nenhum menu disponível para este restaurante…</string>
-    <string name="crash_submitted">Relatório de erros submetido</string>
-    <string name="message_news">Notícias da Universiade do Porto</string>
-    <string name="get_news">Obter notícias</string>
+    <string name="message_all">General search. ANT decides what is more relevant for the provided query.</string>
+    <string name="message_staff">University staff. Including teachers, researchers and external collaborators (among others)</string>
+    <string name="message_students">Student search</string>
+    <string name="message_rooms">Rooms, laboratories and auditoriums, with or without computers or lab equipment.</string>
+    <string name="empty_query">This query must not be empty</string>
+    <string name="no_menu">There is no menu for this restaurant…</string>
+    <string name="crash_submitted">Error report successfully submitted</string>
+    <string name="message_news">Universiade do Porto in the news</string>
+    <string name="get_news">Get news</string>
+    <string name="message_uc">Search for curricular units along with their planning</string>
+
+
+    <string name="category_all">general</string>
+    <string name="category_student">student</string>
+    <string name="category_staff">staff</string>
+    <string name="category_room">room</string>
+    <string name="category_course">course</string>
+    <string name="category_uc">course unit</string>
+    <string name="category_news">latest news</string>
+    <string name="category_menu">menu</string>
+    <string name="category_parking">parking</string>
+    <string name="category_about">about us</string>
+    <string name="more">details…</string>
+    <string name="less">hide…</string>
+    <string name="open_profile">web page</string>
+    <string name="text_placeholder">Text placeholder</string>
+
+     <string name="about">Ant Mobile was developed by two devoted programmers looking for a better way to search for people and resources in complex information systems.\nThis app consists of two main blocks: the app itself and ANT, the platform that indexes the available information on a daily basis.
+            \n\nANT is currently being developed (and tested) at the InfoLab (infolab.fe.up.pt) by José Devezas. It consists of a research platform in the domain of entity oriented search. In this particular case, ANT is focused on the University of Porto\'s information system. It aims at promoting research in this field by providing a basis for integration with other research fields such as indexing strategies, ranking algorithms and, among others, query suggestion. You can check the latest version at ant.fe.up.pt.
+    \n\nANT Mobile is the app itself. It started as an idea of solving the particular issue of searching for anything at the University of Porto wherever you are. It resorts to the ANT infrastructure to fetch the search results and show the end users a mobile friendly interface and interaction. Besides that, it also shows additional (hopefully useful) information about the park occupation and the canteens\' menu.
+    \n\nWe (very, like 10 minutes ago)recently got a talented designer to handle some interface issues that we were constantly facing. Her name is Ana Reis (big thanks to her), and you can check her portfolio at cargocollective.com/RochaReisDesign.
+    \n\nShould you need to get mor information, feel free to get in touch with us at the InfoLab, room I123.
+    </string>
 </resources>

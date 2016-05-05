@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 import pt.up.fe.infolab.ricardo.antmobile.AppController;
 import pt.up.fe.infolab.ricardo.antmobile.R;
+import pt.up.fe.infolab.ricardo.antmobile.Utils;
 import pt.up.fe.infolab.ricardo.antmobile.adapters.AntLookupItemAdapter;
 import pt.up.fe.infolab.ricardo.antmobile.models.SearchResult;
 
@@ -44,8 +45,8 @@ public class NewsFragment extends Fragment implements Response.ErrorListener, Re
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null
-                && savedInstanceState.containsKey("items")) {
-            items = new Gson().fromJson(savedInstanceState.getString("items"), new TypeToken<ArrayList<SearchResult>>() {
+                && savedInstanceState.containsKey("news")) {
+            items = new Gson().fromJson(savedInstanceState.getString("news"), new TypeToken<ArrayList<SearchResult>>() {
             }.getType());
         } else {
             items = new ArrayList<>();
@@ -143,11 +144,9 @@ public class NewsFragment extends Fragment implements Response.ErrorListener, Re
 
         extra += " tipoentidade:noticia";
 
-        Log.e("QUERY", extra);
-
         swipeRefreshLayout.setRefreshing(true);
         //http://172.30.9.217:3000
-        String baseQuery = "http://172.30.9.217:3000/search.json?";
+        String baseQuery = Utils.antEndpoint + "/search?";
         Uri builtUri = Uri.parse(baseQuery)
                 .buildUpon()
                 .appendQueryParameter("q", extra)
@@ -183,7 +182,9 @@ public class NewsFragment extends Fragment implements Response.ErrorListener, Re
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
-        outState.putString("items", new Gson().toJson(items));
+        outState.putString("news", new Gson().toJson(items));
         super.onSaveInstanceState(outState);
     }
+
+
 }

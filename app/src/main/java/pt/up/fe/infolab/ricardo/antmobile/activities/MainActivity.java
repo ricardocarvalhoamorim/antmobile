@@ -93,14 +93,16 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(SearchFragment.newInstance("todos"), "todos");
-        adapter.addFragment(SearchFragment.newInstance("estudante"), "estudante");
-        adapter.addFragment(SearchFragment.newInstance("funcionário"), "funcionário");
-        adapter.addFragment(SearchFragment.newInstance("sala"), "sala");
-        adapter.addFragment(new NewsFragment(), "Últimas Notícias");
-        adapter.addFragment(new CanteenFragment(), "Ementa");
-        adapter.addFragment(new ParkingFragment(), "Estacionamento");
-        adapter.addFragment(new AboutFragment(), "Sobre nós");
+        adapter.addFragment(SearchFragment.newInstance("todos"), getString(R.string.category_all));
+        adapter.addFragment(SearchFragment.newInstance("estudante"), getString(R.string.category_student));
+        adapter.addFragment(SearchFragment.newInstance("funcionário"), getString(R.string.category_staff));
+        adapter.addFragment(SearchFragment.newInstance("sala"), getString(R.string.category_room));
+        adapter.addFragment(SearchFragment.newInstance("cadeira"), getString(R.string.category_uc));
+        adapter.addFragment(SearchFragment.newInstance("curso"), getString(R.string.category_course));
+        adapter.addFragment(SearchFragment.newInstance("noticia"), getString(R.string.category_news));
+        adapter.addFragment(new CanteenFragment(), getString(R.string.category_menu));
+        adapter.addFragment(new ParkingFragment(), getString(R.string.category_parking));
+        adapter.addFragment(new AboutFragment(), getString(R.string.category_about));
         viewPager.setAdapter(adapter);
     }
 

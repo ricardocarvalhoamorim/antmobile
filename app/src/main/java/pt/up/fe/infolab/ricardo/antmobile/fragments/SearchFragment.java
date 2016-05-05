@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.util.Util;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 
 import pt.up.fe.infolab.ricardo.antmobile.AppController;
 import pt.up.fe.infolab.ricardo.antmobile.R;
+import pt.up.fe.infolab.ricardo.antmobile.Utils;
 import pt.up.fe.infolab.ricardo.antmobile.activities.MainActivity;
 import pt.up.fe.infolab.ricardo.antmobile.adapters.AntLookupItemAdapter;
 import pt.up.fe.infolab.ricardo.antmobile.interfaces.OnQueryReadyInterface;
@@ -87,16 +89,22 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
                 setFeedbackMessage(getString(R.string.message_all), R.drawable.ic_ant);
                 break;
             case "funcionário":
-                setFeedbackMessage(getString(R.string.message_staff), R.drawable.ic_staff);
+                setFeedbackMessage(getString(R.string.message_staff), R.drawable.ic_supervisor_account_white_48dp);
                 break;
             case "estudante":
-                setFeedbackMessage(getString(R.string.message_students), R.drawable.ic_book);
+                setFeedbackMessage(getString(R.string.message_students), R.drawable.ic_school_white_48dp);
                 break;
             case "sala":
-                setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_room);
+                setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_domain_white_48dp);
                 break;
-            case "notícias":
-                setFeedbackMessage(getString(R.string.message_news), R.drawable.ic_room);
+            case "cadeira":
+                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_library_books_white_48dp);
+                break;
+            case "curso":
+                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_card_travel_white_48dp);
+                break;
+            case "noticia":
+                setFeedbackMessage(getString(R.string.message_news), R.drawable.ic_newspaper);
                 break;
         }
 
@@ -116,6 +124,9 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         } else
             fragmentMessageRoot.setVisibility(View.GONE);
 
+        if (mCurrentTag.equals("noticia")) {
+            dispatchQuery("");
+        }
         return rootView;
     }
 
@@ -231,6 +242,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
 
         if (!mCurrentTag.equals("todos"))
             extra += " tipoentidade:" + mCurrentTag;
+            //extra += " tipoentidade:" + mCurrentTag;
 
         Log.e("QUERY", extra);
 
@@ -238,8 +250,9 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         mAdapter.notifyDataSetChanged();
 
         swLayout.setRefreshing(true);
-        //http://172.30.9.217:3000
-        String baseQuery = "http://172.30.9.217:3000/search.json?";
+        //String baseQuery = "http://172.30.9.217:3000/search.json?";
+
+        String baseQuery = Utils.antEndpoint + "/search?";
         Uri builtUri = Uri.parse(baseQuery)
                 .buildUpon()
                 .appendQueryParameter("q", extra)

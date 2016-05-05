@@ -30,12 +30,13 @@
         </RelativeLayout>
         <TextView
             android:id="@+id/text_about"
-            android:padding="10dp"
+            android:textColorLink="@android:color/darker_gray"
+            android:layout_margin="20dp"
             android:layout_gravity="center_vertical|end"
             android:autoLink="web"
             android:fontFamily="sans-serif-thin"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
-            android:text="..."
+            android:text="@string/about"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
@@ -45,7 +46,7 @@
             android:autoLink="web"
             android:fontFamily="sans-serif-thin"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
-            android:text="v0.9/2016\nJosé Devezas\nRicardo Amorim"
+            android:text="v1.0/2016\nJosé Devezas\nRicardo Amorim\nAna Rocha Reis"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

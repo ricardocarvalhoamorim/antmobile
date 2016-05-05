@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">ANT Mobile</string>
+    <string name="action_settings">Definições</string>
+    <string name="entry_entity_code">Código</string>
+    <string name="entry_entity_room">Sala</string>
+    <string name="no_results">Não há resultados para esta pesquisa… Por vezes mudar os termos de pesquisa ou mudar a sua estrutura pode ajudar.</string>
+    <string name="parsing_failed">O servidor devolveu algo indecifrável…</string>
+    <string name="volley_error">Houve um erro. Está tudo bem, mas talvez a API esteja em baixo… Ou então não existe internet…</string>
+    <string name="bad_response">O servidor está a apanhar sol nas ilhas Phi Phi. A resposta que recebi é num dialecto indecifrável. Tente outra vez pf</string>
+    <string name="image_placeholder">image placeholder</string>
+    <string name="loading">A carregar…</string>
+    <string name="update">Atualizar</string>
+
+    <string name="dialog_search_title">Pesquisar</string>
+    <string name="dialog_search_header">O que procura?</string>
+    <string name="dialog_search_hint">Termos a pesquisar</string>
+    <string name="dialog_search_body">O ANT mobile pode pesquisar qualquer entidade, desde que esteja registada nos sistemas de informação. Exemplos de pesquisa: I123, Nicky Minaj, …</string>
+
+    <string name="message_all">Pesquisa generalizada. O ANT decide o que é mais relevante de acordo com os termos da pesquisa.</string>
+    <string name="message_staff">Funcionários associados à Universidade. Inclui professores, bolseiros de investigação e investigadores externos (entre outras entidades desta categoria)</string>
+    <string name="message_students">Pesquisa de estudantes</string>
+    <string name="message_rooms">Salas, laboratórios e anfiteatros, com ou sem equipamentos como projetores e computadores.</string>
+    <string name="empty_query">A pesquisa deve incluir alguns termos</string>
+    <string name="no_menu">Não há nenhum menu disponível para este restaurante…</string>
+    <string name="crash_submitted">Relatório de erros submetido</string>
+    <string name="message_news">Notícias da Universiade do Porto</string>
+    <string name="get_news">Obter notícias</string>
+    <string name="message_uc">Procura por unidades curriculares e consulta do plano de trabalhos de cada uma</string>
+    <string name="category_all">todos</string>
+    <string name="category_student">estudante</string>
+    <string name="category_staff">funcionário</string>
+    <string name="category_room">sala</string>
+    <string name="category_uc">Unidades Curriculares</string>
+    <string name="category_news">últimas notícias</string>
+    <string name="category_menu">ementa</string>
+    <string name="category_parking">Estacionamento</string>
+    <string name="category_about">Sobre nós</string>
+    <string name="category_course">Curso</string>
+    <string name="more">expandir…</string>
+    <string name="less">menos…</string>
+    <string name="open_profile">view profile</string>
+    <string name="text_placeholder">Text placeholder</string>
+
+        <string name="about">O ANT Mobile foi desenvolvido por dois programadores que procuram uma ferramenta adequada para pesquisa de entidades num sistema de informação complexo.\nEsta aplicação consiste em dois módulos principais: a aplicação em si, e o ANT, uma plataforma que indexa diariamente a informação disponível no sistema de informação da Universidade do Porto.
+    		\n\nO ANT está a ser atualmente desenvolvido (e testado) no InfoLab pelo investigador José Devezas. O seu objetivo é promover a investigação na área da pesquisa orientada a entidades, servindo também como base para a investigação em outros domínios como estratégias de indexação, algoritmos de ranking e, entre outros, query suggestion. Pode consultar a versão mais recente do ANT em ant.feup.pt.
+    \n\nO ANT Mobile começou com a ideia de resolver os problemas que os sistemas existentes põem aos utilizadores finais, permitindo pesquisar qualquer entidade associada à Universidade do Porto, onde quer que se esteja. Recorre à plataforma ANT para obter resultados de pesquisas e permite filtrar cada interrogação pelo tipo de entidade. Além disso, o ANT Mobile também inclui informação (útil, esperamos) sobre a ocupação do parque (para já apenas da Faculdade de Engenharia) e a ementa das cantinas associadas.
+    \n\nRecentemente (tipo 10 minutos atrás), associamos ao nosso projeto uma designer talentosa, que nos ajuda a resolver problemas de interface recorrentes. Chama-se Ana Rocha Reis (obrigado Ana!). Pode consultar o portfolio da Ana em cargocollective.com/RochaReisDesign.
+            \n\nPara qualquer contacto, pode encontrar-nos no InfoLab, sala I123.
+    </string>
+
+</resources>

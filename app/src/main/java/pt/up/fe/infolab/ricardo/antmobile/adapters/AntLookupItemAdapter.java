@@ -14,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -38,6 +40,7 @@ import java.util.HashMap;
 
 import pt.up.fe.infolab.ricardo.antmobile.AppController;
 import pt.up.fe.infolab.ricardo.antmobile.R;
+import pt.up.fe.infolab.ricardo.antmobile.Utils;
 import pt.up.fe.infolab.ricardo.antmobile.models.Data;
 import pt.up.fe.infolab.ricardo.antmobile.models.Decoration;
 import pt.up.fe.infolab.ricardo.antmobile.models.ResponseAttribute;
@@ -73,7 +76,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         final SearchResult item = items.get(position);
         ((AntLookupViewHolder)holder).tvItemName.setText(item.getDescription());
 
-        String baseQuery = "http://172.30.9.217:3000/search/decorator/metadata.json?";
+        String baseQuery = Utils.antEndpoint + "/search/decorator/metadata?";
         Uri builtUri = Uri.parse(baseQuery)
                 .buildUpon()
                 .appendQueryParameter("entity", item.getUri().substring(item.getUri().indexOf('#') + 1))
@@ -82,7 +85,23 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         String queryURL = builtUri.toString();
 
-        ((AntLookupViewHolder)holder).itemContainer.setOnClickListener(new View.OnClickListener() {
+
+        ((AntLookupViewHolder)holder).tvExpand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (((AntLookupViewHolder) holder).tvItemAttributes.getVisibility() == View.VISIBLE) {
+                    ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.GONE);
+                    ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.more));
+                } else {
+                    ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.VISIBLE);
+                    ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.less));
+                }
+            }
+        });
+
+
+        ((AntLookupViewHolder) holder).tvOpen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String url = item.getLink();
@@ -153,6 +172,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                 ((AntLookupViewHolder)holder).tvItemAttributes.setText(Html.fromHtml(attributesString));
 
                 //We can include the cookie here to enable access to some restricted photos
+                ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.GONE);
                 Glide.with(context).load(responseObject.getPhoto())
                         .asBitmap()
                         .centerCrop()
@@ -167,7 +187,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                             @Override
                             public void onLoadFailed(Exception e, Drawable errorDrawable) {
                                 ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.GONE);
-                                super.onLoadFailed(e, errorDrawable);
+                                //super.onLoadFailed(e, errorDrawable);
                             }
                         });
             }
@@ -182,6 +202,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         AppController.getInstance().addToRequestQueue(req);
         setAnimation(((AntLookupViewHolder) holder).itemContainer, position);
     }
+
 
 
     @Override
@@ -199,9 +220,11 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         private TextView tvItemName;
         private TextView tvItemAttributes;
-        private  TextView tvItemRole;
+        private TextView tvItemRole;
         private TextView tvWebpage;
         private TextView tvRoom;
+        private TextView tvExpand;
+        private TextView tvOpen;
         private ImageView ivItemDrawable;
         private CardView itemContainer;
 
@@ -215,6 +238,8 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             itemContainer = (CardView) rowView.findViewById(R.id.item_container);
             tvItemRole = (TextView) rowView.findViewById(R.id.item_role);
             tvRoom = (TextView) rowView.findViewById(R.id.item_room);
+            tvExpand = (TextView) rowView.findViewById(R.id.item_expand);
+            tvOpen = (TextView) rowView.findViewById(R.id.item_open);
 
             rowView.setOnClickListener(this);
             rowView.setOnLongClickListener(this);
@@ -222,7 +247,6 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         @Override
         public void onClick(View view) {
-            //listener.onItemClick(view, getPosition());
         }
 
         @Override
@@ -233,6 +257,8 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
     private void setAnimation(View viewToAnimate, int position) {
+
+
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
             Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);

@@ -17,6 +17,7 @@
 
     <LinearLayout
         android:layout_marginTop="20dp"
+        android:layout_margin="25dp"
         android:visibility="visible"
         android:id="@+id/parking_data"
         android:orientation="vertical"

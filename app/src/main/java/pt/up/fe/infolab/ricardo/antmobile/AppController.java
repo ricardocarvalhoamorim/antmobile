@@ -53,7 +53,7 @@ public class AppController extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-        ACRA.init(this);
+        //ACRA.init(this);
     }
 
     public static synchronized AppController getInstance() {

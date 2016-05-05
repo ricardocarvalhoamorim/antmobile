@@ -9,6 +9,7 @@
     card_view:cardCornerRadius="2dp"
     android:layout_margin="4dp"
     android:elevation="8sp"
+    android:animateLayoutChanges="true"
     android:id="@+id/item_container"
     >
 
@@ -23,16 +24,6 @@
             android:layout_height="wrap_content"
             >
 
-            <ImageView
-                android:visibility="gone"
-                android:id="@+id/item_photo"
-                android:layout_gravity="center"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_person_dark"
-                android:scaleType="fitCenter"
-                />
-
             <LinearLayout
                 android:layout_margin="5dp"
                 android:orientation="vertical"
@@ -40,52 +31,124 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content">
 
+
                 <TextView
                     android:id="@+id/item_name"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="name goes here"
+                    android:text="@string/text_placeholder"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
 
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/item_role"
-                    android:fontFamily="sans-serif-thin"
-                    android:text="membership type goes here"
+
+                <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/item_room"
-                    android:fontFamily="sans-serif-thin"
-                    android:text="item room number or code goes here"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/item_webpage"
-                    android:visibility="gone"
-                    android:fontFamily="sans-serif-thin"
-                    android:text="http://none.hehe"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    <ImageView
+                        android:visibility="visible"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:id="@+id/item_photo"
+                        android:layout_gravity="center"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/ic_person_dark"
+                        android:scaleType="fitCenter"
+                        />
 
+
+                    <LinearLayout
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/item_role"
+                            android:fontFamily="sans-serif-thin"
+                            android:text="@string/text_placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/item_room"
+                            android:fontFamily="sans-serif-thin"
+                            android:text="@string/text_placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/item_webpage"
+                            android:visibility="gone"
+                            android:fontFamily="sans-serif-thin"
+                            android:text="@string/text_placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_gravity="end"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            >
+
+            <TextView
+                android:id="@+id/item_open"
+                android:padding="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@android:color/darker_gray"
+                android:text="@string/open_profile"
+                android:textAllCaps="true"
+                android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/item_expand"
+                android:padding="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/more"
+                android:layout_gravity="end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
         <View
             android:background="@color/colorPrimary"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="0dp"
             />
+
+
         <TextView
+            android:visibility="gone"
             android:id="@+id/item_attributes"
             android:layout_margin="10dp"
             android:fontFamily="sans-serif-thin"
-            android:text="item attributes\n go here \n like this"
+            android:text=""
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

@@ -37,7 +37,7 @@ public class AboutFragment extends Fragment {
                 " de informação que têm sido recentemente requisitadas, como a ocupação dos parques de estacionamento e a ementa das cantinas (sempre que disponível, e " +
                 "integralmente dependente da infraestrutura da Faculdade de Engenharia)";
 
-                ((TextView) rootView.findViewById(R.id.text_about)).setText(Html.fromHtml(about));
+               // ((TextView) rootView.findViewById(R.id.text_about)).setText(Html.fromHtml(about));
 
         return rootView;
     }

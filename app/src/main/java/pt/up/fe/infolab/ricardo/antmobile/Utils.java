@@ -8,6 +8,8 @@ import android.content.res.TypedArray;
 
 public class Utils {
 
+    public static String antEndpoint = "http://ant.fe.up.pt/api";
+
     public static int getToolbarHeight(Context context) {
         final TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
                 new int[]{R.attr.actionBarSize});
