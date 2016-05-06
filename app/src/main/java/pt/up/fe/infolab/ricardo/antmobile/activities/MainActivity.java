@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -25,7 +24,6 @@ import java.util.List;
 import pt.up.fe.infolab.ricardo.antmobile.R;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.AboutFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.CanteenFragment;
-import pt.up.fe.infolab.ricardo.antmobile.fragments.NewsFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.ParkingFragment;
 import pt.up.fe.infolab.ricardo.antmobile.fragments.SearchFragment;
 

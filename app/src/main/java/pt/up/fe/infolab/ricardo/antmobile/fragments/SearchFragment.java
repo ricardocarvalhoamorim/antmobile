@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -95,13 +96,13 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
                 setFeedbackMessage(getString(R.string.message_students), R.drawable.ic_school_white_48dp);
                 break;
             case "sala":
-                setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_domain_white_48dp);
+                setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_rooms);
                 break;
             case "cadeira":
                 setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_library_books_white_48dp);
                 break;
             case "curso":
-                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_card_travel_white_48dp);
+                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_course_92dp);
                 break;
             case "noticia":
                 setFeedbackMessage(getString(R.string.message_news), R.drawable.ic_newspaper);

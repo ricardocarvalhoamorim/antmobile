@@ -1,5 +1,7 @@
 package pt.up.fe.infolab.ricardo.antmobile.models;
 
+import java.util.ArrayList;
+
 /**
  * Created by ricardo on 12/3/15.
  */
@@ -8,6 +10,8 @@ public class SearchResult {
     private String uri;
     private String description;
     private String link;
+    private ArrayList<String> sources;
+    private String date;
     private EntityType type;
 
     public String getUri() {
@@ -40,5 +44,21 @@ public class SearchResult {
 
     public void setType(EntityType type) {
         this.type = type;
+    }
+
+    public ArrayList<String> getSources() {
+        return sources;
+    }
+
+    public void setSources(ArrayList<String> sources) {
+        this.sources = sources;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

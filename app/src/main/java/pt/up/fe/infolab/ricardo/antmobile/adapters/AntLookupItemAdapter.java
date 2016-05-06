@@ -14,27 +14,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
+import android.view.animation.Transformation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.bumptech.glide.request.target.Target;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -133,20 +129,16 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                 }
 
 
-                if (attributes.containsKey("Faculdade")) {
 
-                    String formattedRoles = attributes.get("Faculdade");
-
-                    if (formattedRoles.startsWith("[")) {
-                        String[] roles = formattedRoles.replaceAll("[<>\\[\\]-]", "").split(",");
-                        formattedRoles = "";
-                        for (String s : roles) {
-                            formattedRoles += s.replaceFirst(" ", "") + "\n";
-                        }
+                if (!item.getSources().isEmpty()) {
+                    String formatedSources ="";
+                    for (String s : item.getSources()) {
+                        formatedSources += s + "\n";
                     }
-                    attributes.put("Faculdade", formattedRoles);
+                    ((AntLookupViewHolder)holder).tvItemRole.setText(formatedSources);
                     ((AntLookupViewHolder)holder).tvItemRole.setVisibility(View.VISIBLE);
-                    ((AntLookupViewHolder)holder).tvItemRole.setText(formattedRoles);
+                } else {
+                    ((AntLookupViewHolder)holder).tvItemRole.setVisibility(View.GONE);
                 }
 
                 if (attributes.containsKey("Sítio")) {
@@ -163,16 +155,15 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                     for (ResponseAttribute rAttr : arr) {
                         attributesString += "<b>" + rAttr.getLabel() + ":</b> " +
                                 rAttr.getValue() + "<br />";
-
                     }
-
                     attributesString += "<br />";
                 }
 
                 ((AntLookupViewHolder)holder).tvItemAttributes.setText(Html.fromHtml(attributesString));
-
-                //We can include the cookie here to enable access to some restricted photos
                 ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.GONE);
+                if (!Utils.antPeople.contains(item.getType().getUri()))
+                    return;
+
                 Glide.with(context).load(responseObject.getPhoto())
                         .asBitmap()
                         .centerCrop()
@@ -266,5 +257,4 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             lastPosition = position;
         }
     }
-
 }

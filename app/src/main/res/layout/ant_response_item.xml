@@ -7,9 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="2dp"
-    android:layout_margin="4dp"
-    android:elevation="8sp"
-    android:animateLayoutChanges="true"
+    android:layout_margin="8dp"
     android:id="@+id/item_container"
     >
 
@@ -40,7 +38,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
-                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@android:color/black"
                     android:text="@string/text_placeholder"
                     android:gravity="center_vertical"
                     android:layout_width="match_parent"
@@ -61,7 +59,6 @@
                         android:layout_gravity="center"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:src="@drawable/ic_person_dark"
                         android:scaleType="fitCenter"
                         />
 
@@ -77,7 +74,6 @@
                         <TextView
                             android:visibility="gone"
                             android:id="@+id/item_role"
-                            android:fontFamily="sans-serif-thin"
                             android:text="@string/text_placeholder"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -115,7 +111,6 @@
             <TextView
                 android:id="@+id/item_open"
                 android:padding="10dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@android:color/darker_gray"
                 android:text="@string/open_profile"
                 android:textAllCaps="true"
@@ -125,8 +120,8 @@
 
             <TextView
                 android:id="@+id/item_expand"
+                android:textStyle="bold"
                 android:padding="10dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
                 android:text="@string/more"

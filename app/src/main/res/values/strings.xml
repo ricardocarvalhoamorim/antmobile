@@ -23,7 +23,7 @@
     <string name="empty_query">This query must not be empty</string>
     <string name="no_menu">There is no menu for this restaurant…</string>
     <string name="crash_submitted">Error report successfully submitted</string>
-    <string name="message_news">Universiade do Porto in the news</string>
+    <string name="message_news">Universidade do Porto in the news</string>
     <string name="get_news">Get news</string>
     <string name="message_uc">Search for curricular units along with their planning</string>
 
@@ -38,8 +38,8 @@
     <string name="category_menu">menu</string>
     <string name="category_parking">parking</string>
     <string name="category_about">about us</string>
-    <string name="more">details…</string>
-    <string name="less">hide…</string>
+    <string name="more">more…</string>
+    <string name="less">less…</string>
     <string name="open_profile">web page</string>
     <string name="text_placeholder">Text placeholder</string>
 
