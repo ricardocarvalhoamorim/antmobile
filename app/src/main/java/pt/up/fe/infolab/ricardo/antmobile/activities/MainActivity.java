@@ -1,5 +1,6 @@
 package pt.up.fe.infolab.ricardo.antmobile.activities;
 
+import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -11,12 +12,19 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.SurfaceHolder;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +40,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private TabLayout.Tab activeTab;
     private ViewPagerAdapter adapter;
-    private FloatingActionButton floatingActionButton;
     private ViewPager viewPager;
-    private EditText etQuery;
     private String lastQuery;
-    private boolean searchCleared;
-
     private AppBarLayout appBarLayout;
-    private CardView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,43 +53,14 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         setupViewPager(viewPager);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        etQuery = (EditText) findViewById(R.id.app_search);
-        searchView = (CardView) findViewById(R.id.search_view);
-        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         tabLayout.setupWithViewPager(viewPager);
         activeTab = tabLayout.getTabAt(0);
         tabLayout.setOnTabSelectedListener(this);
-
-        floatingActionButton.show();
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                promptDialog();
-            }
-        });
-
-        findViewById(R.id.clear_search).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (searchCleared) {
-                    searchView.setVisibility(View.INVISIBLE);
-                    searchCleared = false;
-
-                    floatingActionButton.show();
-
-                    //hide keyboard
-                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(etQuery.getWindowToken(), 0);
-                    return;
-                }
-
-                etQuery.setText("");
-                searchCleared = true;
-            }
-        });
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -111,11 +85,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         viewPager.setCurrentItem(tab.getPosition());
         //last position, no need for the fab button
         if (activeTab.getPosition() >= adapter.getCount() - 4) {
-            floatingActionButton.hide();
-            searchView.setVisibility(View.INVISIBLE);
             appBarLayout.setExpanded(false);
         } else {
-            floatingActionButton.show();
             appBarLayout.setExpanded(true);
         }
     }
@@ -155,42 +126,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         }
     }
 
-    /**
-     * Shows a dialog to input the search query terms
-     */
-    private void promptDialog() {
-
-        if (lastQuery != null)
-            etQuery.setText(lastQuery);
-
-        floatingActionButton.hide();
-
-        searchView.setVisibility(View.VISIBLE);
-        etQuery.requestFocus();
-        etQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    dispatchSearch(etQuery.getText().toString());
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(etQuery, InputMethodManager.SHOW_IMPLICIT);
-    }
 
     private void dispatchSearch(String query) {
         if (activeTab == null)
             return;
-
-        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(etQuery.getWindowToken(), 0);
-
-        //cvSearch.setVisibility(View.INVISIBLE);
-        floatingActionButton.show();
 
         lastQuery = query;
 
@@ -199,6 +138,40 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
                 ((SearchFragment) adapter.getItem(i)).onQueryReady(query);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.options_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView = null;
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(MainActivity.this.getComponentName()));
+        }
+
+        SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener() {
+            public boolean onQueryTextChange(String newText) {
+                // this is your adapter that will be filtered
+                return true;
+            }
+
+            public boolean onQueryTextSubmit(String query) {
+                //Here u can get the value "query" which is entered in the search box.
+                dispatchSearch(query);
+                return true;
+            }
+        };
+        searchView.setOnQueryTextListener(queryTextListener);
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     public String getActiveQuery() {
         return this.lastQuery == null ? "" : this.lastQuery;

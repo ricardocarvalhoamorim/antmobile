@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,7 +19,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.bumptech.glide.util.Util;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -99,7 +97,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
                 setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_rooms);
                 break;
             case "cadeira":
-                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_library_books_white_48dp);
+                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_uc_92dp);
                 break;
             case "curso":
                 setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_course_92dp);
@@ -240,11 +238,6 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
      * adds the request to the queue if applicable
      */
     private void dispatchQuery(String extra) {
-
-        if (!mCurrentTag.equals("todos"))
-            extra += " tipoentidade:" + mCurrentTag;
-            //extra += " tipoentidade:" + mCurrentTag;
-
         Log.e("QUERY", extra);
 
         lookupItems.clear();
@@ -254,13 +247,24 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         //String baseQuery = "http://172.30.9.217:3000/search.json?";
 
         String baseQuery = Utils.antEndpoint + "/search?";
-        Uri builtUri = Uri.parse(baseQuery)
+        Uri.Builder builder = Uri.parse(baseQuery)
                 .buildUpon()
-                .appendQueryParameter("q", extra)
-                .appendQueryParameter("num", "20")
-                .build();
+                .appendQueryParameter("num", "20");
 
-        String queryURL = builtUri.toString();
+        if (!mCurrentTag.equals("todos")) {
+            builder.appendQueryParameter("tipoentidade", mCurrentTag);
+        }
+
+        if(mCurrentTag.equals("noticia")) {
+            //builder.appendQueryParameter("q", "tipoentidade:noticia");
+            extra = "";
+        }
+
+        if (!extra.isEmpty()) {
+            builder.appendQueryParameter("q", extra);
+        }
+
+        String queryURL = builder.build().toString();
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, queryURL, null, SearchFragment.this, SearchFragment.this);
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req);

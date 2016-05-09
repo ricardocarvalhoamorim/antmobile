@@ -82,6 +82,19 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         String queryURL = builtUri.toString();
 
 
+        ((AntLookupViewHolder) holder).itemContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (((AntLookupViewHolder) holder).tvItemAttributes.getVisibility() == View.VISIBLE) {
+                    ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.GONE);
+                    ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.more));
+                } else {
+                    ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.VISIBLE);
+                    ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.less));
+                }
+            }
+        });
+
         ((AntLookupViewHolder)holder).tvExpand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
