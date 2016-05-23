@@ -84,25 +84,25 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         swLayout.setEnabled(false);
 
         switch (mCurrentTag) {
-            case "todos":
+            case "Todos":
                 setFeedbackMessage(getString(R.string.message_all), R.drawable.ic_ant);
                 break;
-            case "funcionário":
-                setFeedbackMessage(getString(R.string.message_staff), R.drawable.ic_supervisor_account_white_48dp);
+            case "Funcionário":
+                setFeedbackMessage(getString(R.string.message_staff), R.drawable.ic_staff_92dp);
                 break;
-            case "estudante":
-                setFeedbackMessage(getString(R.string.message_students), R.drawable.ic_school_white_48dp);
+            case "Estudante":
+                setFeedbackMessage(getString(R.string.message_students), R.drawable.ic_student_92dp);
                 break;
-            case "sala":
+            case "Sala":
                 setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_rooms);
                 break;
-            case "cadeira":
-                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_uc_92dp);
+            case "Cadeira":
+                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_curricular_unit_92dp);
                 break;
-            case "curso":
+            case "Curso":
                 setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_course_92dp);
                 break;
-            case "noticia":
+            case "Noticia":
                 setFeedbackMessage(getString(R.string.message_news), R.drawable.ic_newspaper);
                 break;
         }
@@ -123,7 +123,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         } else
             fragmentMessageRoot.setVisibility(View.GONE);
 
-        if (mCurrentTag.equals("noticia")) {
+        if (mCurrentTag.equals("Notícia")) {
             dispatchQuery("");
         }
         return rootView;
@@ -133,7 +133,7 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     public void onErrorResponse(VolleyError error) {
         swLayout.setRefreshing(false);
         Log.e("VOLLEY", "" + error.getMessage());
-        setFeedbackMessage(getString(R.string.volley_error), R.drawable.ic_sad);
+        setFeedbackMessage(getString(R.string.volley_error), R.drawable.ic_anteater_error_92dp);
     }
 
     @Override
@@ -251,11 +251,11 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
                 .buildUpon()
                 .appendQueryParameter("num", "20");
 
-        if (!mCurrentTag.equals("todos")) {
+        if (!mCurrentTag.equals("Todos")) {
             builder.appendQueryParameter("tipoentidade", mCurrentTag);
         }
 
-        if(mCurrentTag.equals("noticia")) {
+        if(mCurrentTag.equals("Notícia")) {
             //builder.appendQueryParameter("q", "tipoentidade:noticia");
             extra = "";
         }

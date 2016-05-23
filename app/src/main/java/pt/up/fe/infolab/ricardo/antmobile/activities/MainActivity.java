@@ -4,27 +4,17 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,13 +55,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private void setupViewPager(ViewPager viewPager) {
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(SearchFragment.newInstance("todos"), getString(R.string.category_all));
-        adapter.addFragment(SearchFragment.newInstance("estudante"), getString(R.string.category_student));
-        adapter.addFragment(SearchFragment.newInstance("funcionário"), getString(R.string.category_staff));
-        adapter.addFragment(SearchFragment.newInstance("sala"), getString(R.string.category_room));
-        adapter.addFragment(SearchFragment.newInstance("cadeira"), getString(R.string.category_uc));
-        adapter.addFragment(SearchFragment.newInstance("curso"), getString(R.string.category_course));
-        adapter.addFragment(SearchFragment.newInstance("noticia"), getString(R.string.category_news));
+        adapter.addFragment(SearchFragment.newInstance("Todos"), getString(R.string.category_all));
+        adapter.addFragment(SearchFragment.newInstance("Estudante"), getString(R.string.category_student));
+        adapter.addFragment(SearchFragment.newInstance("Funcionário"), getString(R.string.category_staff));
+        adapter.addFragment(SearchFragment.newInstance("Sala"), getString(R.string.category_room));
+        adapter.addFragment(SearchFragment.newInstance("Cadeira"), getString(R.string.category_uc));
+        adapter.addFragment(SearchFragment.newInstance("Curso"), getString(R.string.category_course));
+        adapter.addFragment(SearchFragment.newInstance("Notícia"), getString(R.string.category_news));
         adapter.addFragment(new CanteenFragment(), getString(R.string.category_menu));
         adapter.addFragment(new ParkingFragment(), getString(R.string.category_parking));
         adapter.addFragment(new AboutFragment(), getString(R.string.category_about));

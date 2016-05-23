@@ -11,7 +11,7 @@
     <ImageView
         android:layout_marginTop="35dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_parking"
+        android:src="@drawable/ic_parking_92dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
