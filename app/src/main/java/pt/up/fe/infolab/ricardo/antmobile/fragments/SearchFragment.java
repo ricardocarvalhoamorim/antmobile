@@ -74,7 +74,6 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
 
         Bundle args = getArguments();
         mCurrentTag = args.getString("current_tag");
-
         rvLookupItems = (RecyclerView) rootView.findViewById(R.id.rv_lookup_items);
         fragmentMessageRoot = (LinearLayout) rootView.findViewById(R.id.intro_layout);
         swLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_layout);
@@ -139,7 +138,6 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     @Override
     public void onResponse(JSONObject response) {
         swLayout.setRefreshing(false);
-        Log.d("", response.toString());
 
         if (response.length() == 0) {
             setFeedbackMessage(getString(R.string.bad_response), R.drawable.ic_ant);
@@ -238,8 +236,6 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
      * adds the request to the queue if applicable
      */
     private void dispatchQuery(String extra) {
-        Log.e("QUERY", extra);
-
         lookupItems.clear();
         mAdapter.notifyDataSetChanged();
 

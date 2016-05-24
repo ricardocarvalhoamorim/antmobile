@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -16,7 +17,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -82,14 +82,15 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         String queryURL = builtUri.toString();
 
 
+        ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.GONE);
         ((AntLookupViewHolder) holder).itemContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (((AntLookupViewHolder) holder).tvItemAttributes.getVisibility() == View.VISIBLE) {
-                    ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.GONE);
+                    collapse(((AntLookupViewHolder) holder).tvItemAttributes);
                     ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.more));
                 } else {
-                    ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.VISIBLE);
+                    expand(((AntLookupViewHolder) holder).tvItemAttributes);
                     ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.less));
                 }
             }
@@ -100,10 +101,10 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             public void onClick(View v) {
 
                 if (((AntLookupViewHolder) holder).tvItemAttributes.getVisibility() == View.VISIBLE) {
-                    ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.GONE);
+                    collapse(((AntLookupViewHolder) holder).tvItemAttributes);
                     ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.more));
                 } else {
-                    ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.VISIBLE);
+                    expand(((AntLookupViewHolder) holder).tvItemAttributes);
                     ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.less));
                 }
             }
@@ -209,6 +210,8 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
 
+
+
     @Override
     public int getItemViewType(int position) {
         return 0;
@@ -269,5 +272,59 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }
+    }
+
+    public static void expand(final View v) {
+        v.measure(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT);
+        final int targetHeight = v.getMeasuredHeight();
+
+        // Older versions of android (pre API 21) cancel animations for views with a height of 0.
+        v.getLayoutParams().height = 1;
+        v.setVisibility(View.VISIBLE);
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                v.getLayoutParams().height = interpolatedTime == 1
+                        ? LinearLayoutCompat.LayoutParams.WRAP_CONTENT
+                        : (int)(targetHeight * interpolatedTime);
+                v.requestLayout();
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int)(targetHeight / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
+    }
+
+    public static void collapse(final View v) {
+        final int initialHeight = v.getMeasuredHeight();
+
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if(interpolatedTime == 1){
+                    v.setVisibility(View.GONE);
+                }else{
+                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
     }
 }

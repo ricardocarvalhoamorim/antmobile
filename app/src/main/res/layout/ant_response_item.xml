@@ -9,6 +9,7 @@
     card_view:cardCornerRadius="2dp"
     android:layout_margin="8dp"
     android:id="@+id/item_container"
+    android:animateLayoutChanges="true"
     >
 
     <LinearLayout
@@ -48,11 +49,13 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
 
                     <ImageView
-                        android:visibility="visible"
+                        android:contentDescription="@string/image_placeholder"
+                        android:visibility="gone"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:id="@+id/item_photo"
@@ -99,6 +102,23 @@
 
         </LinearLayout>
 
+
+        <View
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            />
+
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/item_attributes"
+            android:layout_margin="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:layout_gravity="end"
             android:orientation="horizontal"
@@ -131,20 +151,5 @@
 
         </LinearLayout>
 
-        <View
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            />
-
-
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/item_attributes"
-            android:layout_margin="10dp"
-            android:fontFamily="sans-serif-thin"
-            android:text=""
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

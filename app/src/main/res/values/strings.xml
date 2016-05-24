@@ -16,10 +16,10 @@
     <string name="dialog_search_hint">Query</string>
     <string name="dialog_search_body">Ant mobile can look up for any entity, provided it exists in the information system. Some examples of querys are "I123", "Nicky Minaj", …</string>
 
-    <string name="message_all">General search. ANT decides what is more relevant for the provided query.</string>
+    <string name="message_all">General search. ANT decides what is more relevant for the provided query</string>
     <string name="message_staff">University staff. Including teachers, researchers and external collaborators (among others)</string>
     <string name="message_students">Student search</string>
-    <string name="message_rooms">Rooms, laboratories and auditoriums, with or without computers or lab equipment.</string>
+    <string name="message_rooms">Rooms, laboratories and auditoriums, with or without computers or lab equipment</string>
     <string name="empty_query">This query must not be empty</string>
     <string name="no_menu">There is no menu for this restaurant…</string>
     <string name="crash_submitted">Error report successfully submitted</string>

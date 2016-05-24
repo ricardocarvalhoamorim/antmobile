@@ -63,6 +63,7 @@ public class AppController extends Application {
     private RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+            enableHttpResponseCache();
         }
 
         return mRequestQueue;
