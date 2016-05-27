@@ -2,9 +2,7 @@ package pt.up.fe.infolab.ricardo.antmobile.models;
 
 import java.util.ArrayList;
 
-/**
- * Created by ricardo on 12/3/15.
- */
+
 public class SearchResult {
 
     private String uri;
@@ -46,8 +44,12 @@ public class SearchResult {
         this.type = type;
     }
 
-    public ArrayList<String> getSources() {
-        return sources;
+    public String getSources() {
+
+        String result = "";
+        for (String s : sources)
+            result += s + ",";
+        return result.substring(0, result.length()-1);
     }
 
     public void setSources(ArrayList<String> sources) {

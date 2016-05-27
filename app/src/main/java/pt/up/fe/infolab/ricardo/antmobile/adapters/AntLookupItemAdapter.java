@@ -17,7 +17,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -40,6 +42,7 @@ import pt.up.fe.infolab.ricardo.antmobile.Utils;
 import pt.up.fe.infolab.ricardo.antmobile.models.Data;
 import pt.up.fe.infolab.ricardo.antmobile.models.Decoration;
 import pt.up.fe.infolab.ricardo.antmobile.models.ResponseAttribute;
+import pt.up.fe.infolab.ricardo.antmobile.models.ResponseData;
 import pt.up.fe.infolab.ricardo.antmobile.models.SearchResult;
 
 public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -71,28 +74,101 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         final SearchResult item = items.get(position);
         ((AntLookupViewHolder)holder).tvItemName.setText(item.getDescription());
-
-        String baseQuery = Utils.antEndpoint + "/search/decorator/metadata?";
-        Uri builtUri = Uri.parse(baseQuery)
-                .buildUpon()
-                .appendQueryParameter("entity", item.getUri().substring(item.getUri().indexOf('#') + 1))
-                .appendQueryParameter("type", item.getType().getUri().substring(item.getType().getUri().indexOf('#') + 1))
-                .build();
-
-        String queryURL = builtUri.toString();
+        //((AntLookupViewHolder) holder).progressBar.setIndeterminate(false);
 
 
         ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.GONE);
+        ((AntLookupViewHolder) holder).tvItemRole.setText(item.getSources());
+
+
         ((AntLookupViewHolder) holder).itemContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 if (((AntLookupViewHolder) holder).tvItemAttributes.getVisibility() == View.VISIBLE) {
                     collapse(((AntLookupViewHolder) holder).tvItemAttributes);
                     ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.more));
-                } else {
+                    ((AntLookupViewHolder) holder).progressBar.setVisibility(View.INVISIBLE);
+                    return;
+                }
+
+                if (!((AntLookupViewHolder) holder).tvItemAttributes.getText().equals("")) {
                     expand(((AntLookupViewHolder) holder).tvItemAttributes);
                     ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.less));
+                    ((AntLookupViewHolder) holder).progressBar.setVisibility(View.INVISIBLE);
+                    return;
                 }
+
+                String baseQuery = Utils.antEndpoint + "/search/decorator/metadata?";
+                Uri builtUri = Uri.parse(baseQuery)
+                        .buildUpon()
+                        .appendQueryParameter("entity", item.getUri().substring(item.getUri().indexOf('#') + 1))
+                        .appendQueryParameter("type", item.getType().getUri().substring(item.getType().getUri().indexOf('#') + 1))
+                        .build();
+
+                String queryURL = builtUri.toString();
+                Log.e("REQ", queryURL);
+                ((AntLookupViewHolder) holder).progressBar.setVisibility(View.VISIBLE);
+                JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Decoration responseObject;
+                        try {
+                            Data responseData = new Gson().fromJson(response.get("data").toString(), Data.class);
+                            responseObject = responseData.getDecorations();
+                        } catch (JSONException e) {
+                            Log.e("JSON", e.getMessage());
+                            return;
+                        }
+
+
+                        Log.e("REsp", "Response");
+                        //Set item attributes in the display
+                        String attributesString = "";
+                        HashMap<String, String> attributes = new HashMap<>();
+
+
+                        ArrayList<ResponseData> data = responseObject.getAttributes().getData();
+                        for (ResponseData rt : data) {
+
+                            attributes.put(rt.getLabel(), rt.getValue());
+                            attributesString += "<b>" + rt.getLabel() + ":</b> " +
+                                    rt.getValue() + "<br />";
+                        }
+
+                        if (attributes.containsKey("Sala")) {
+                            ((AntLookupViewHolder)holder).tvRoom.setVisibility(View.VISIBLE);
+                            ((AntLookupViewHolder)holder).tvRoom.setText(attributes.get("Sala"));
+                        }
+
+                        ArrayList<ResponseAttribute> levelTwoAttributes = responseObject.getLevelTwoAttributes();
+                        for (ResponseAttribute attr : levelTwoAttributes) {
+                            for (ResponseData rData : attr.getData()) {
+                                attributesString += "<b>" + rData.getLabel() + ":</b> " +
+                                        rData.getValue() + "<br />";
+                            }
+                            attributesString += "<br />";
+                        }
+
+
+                        ((AntLookupViewHolder)holder).tvItemAttributes.setText(Html.fromHtml(attributesString));
+
+                        expand(((AntLookupViewHolder) holder).tvItemAttributes);
+                        ((AntLookupViewHolder) holder).progressBar.setVisibility(View.INVISIBLE);
+                        ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.less));
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("VOLLEY", error.toString());
+                        ((AntLookupViewHolder) holder).progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(context, context.getString(R.string.attribute_error), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // Adding request to request queue
+                AppController.getInstance().addToRequestQueue(req);
             }
         });
 
@@ -121,90 +197,26 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             }
         });
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                Decoration responseObject;
-                try {
-                    Data responseData = new Gson().fromJson(response.get("data").toString(), Data.class);
-                    responseObject = responseData.getDecorations();
-                } catch (JSONException e) {
-                    Log.e("JSON", e.getMessage());
-                    return;
-                }
-
-                //Set item attributes in the display
-                String attributesString = "";
-                HashMap<String, String> attributes = new HashMap<>();
-                for (ResponseAttribute rt : responseObject.getAttributes()) {
-                    attributes.put(rt.getLabel(), rt.getValue().toString());
-                    attributesString += "<b>" + rt.getLabel() + ":</b> " +
-                            rt.getValue() + "<br />";
-                }
-
-
-
-                if (!item.getSources().isEmpty()) {
-                    String formatedSources ="";
-                    for (String s : item.getSources()) {
-                        formatedSources += s + "\n";
+        Glide.with(context).load("https://sigarra.up.pt/feup/pt/FOTOGRAFIAS_SERVICE.foto?pct_cod=" + item.getLink().substring(item.getLink().indexOf("=")+1))
+                .asBitmap()
+                .centerCrop()
+                .animate(android.R.anim.fade_in)
+                .into(new BitmapImageViewTarget(((AntLookupViewHolder) holder).ivItemDrawable) {
+                    @Override
+                    public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
+                        ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.VISIBLE);
+                        super.onResourceReady(bitmap, anim);
+                        ((AntLookupViewHolder) holder).progressBar.setVisibility(View.INVISIBLE);
                     }
-                    ((AntLookupViewHolder)holder).tvItemRole.setText(formatedSources);
-                    ((AntLookupViewHolder)holder).tvItemRole.setVisibility(View.VISIBLE);
-                } else {
-                    ((AntLookupViewHolder)holder).tvItemRole.setVisibility(View.GONE);
-                }
 
-                if (attributes.containsKey("Sítio")) {
-                    ((AntLookupViewHolder)holder).tvWebpage.setVisibility(View.VISIBLE);
-                    ((AntLookupViewHolder)holder).tvWebpage.setText(Html.fromHtml("<a href=" + attributes.get("Sítio") + "/>"));
-                }
-
-                if (attributes.containsKey("Sala")) {
-                    ((AntLookupViewHolder)holder).tvRoom.setVisibility(View.VISIBLE);
-                    ((AntLookupViewHolder)holder).tvRoom.setText(attributes.get("Sala"));
-                }
-
-                for (ArrayList<ResponseAttribute> arr : responseObject.getLevelTwoAttributes()) {
-                    for (ResponseAttribute rAttr : arr) {
-                        attributesString += "<b>" + rAttr.getLabel() + ":</b> " +
-                                rAttr.getValue() + "<br />";
+                    @Override
+                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
+                        ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.GONE);
+                        ((AntLookupViewHolder) holder).progressBar.setVisibility(View.INVISIBLE);
+                        super.onLoadFailed(e, errorDrawable);
                     }
-                    attributesString += "<br />";
-                }
+                });
 
-                ((AntLookupViewHolder)holder).tvItemAttributes.setText(Html.fromHtml(attributesString));
-                ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.GONE);
-                if (!Utils.antPeople.contains(item.getType().getUri()))
-                    return;
-
-                Glide.with(context).load(responseObject.getPhoto())
-                        .asBitmap()
-                        .centerCrop()
-                        .animate(android.R.anim.fade_in)
-                        .into(new BitmapImageViewTarget(((AntLookupViewHolder) holder).ivItemDrawable) {
-                            @Override
-                            public void onResourceReady(Bitmap bitmap, GlideAnimation anim) {
-                                ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.VISIBLE);
-                                super.onResourceReady(bitmap, anim);
-                            }
-
-                            @Override
-                            public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                                ((AntLookupViewHolder)holder).ivItemDrawable.setVisibility(View.GONE);
-                                //super.onLoadFailed(e, errorDrawable);
-                            }
-                        });
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("VOLLEY", error.toString());
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req);
         setAnimation(((AntLookupViewHolder) holder).itemContainer, position);
     }
 
@@ -228,12 +240,12 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         private TextView tvItemName;
         private TextView tvItemAttributes;
         private TextView tvItemRole;
-        private TextView tvWebpage;
         private TextView tvRoom;
         private TextView tvExpand;
         private TextView tvOpen;
         private ImageView ivItemDrawable;
         private CardView itemContainer;
+        private ProgressBar progressBar;
 
         public AntLookupViewHolder(View rowView) {
             super(rowView);
@@ -241,12 +253,13 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             tvItemName = (TextView) rowView.findViewById(R.id.item_name);
             tvItemAttributes = (TextView) rowView.findViewById(R.id.item_attributes);
             ivItemDrawable = (ImageView) rowView.findViewById(R.id.item_photo);
-            tvWebpage = (TextView) rowView.findViewById(R.id.item_webpage);
             itemContainer = (CardView) rowView.findViewById(R.id.item_container);
             tvItemRole = (TextView) rowView.findViewById(R.id.item_role);
             tvRoom = (TextView) rowView.findViewById(R.id.item_room);
             tvExpand = (TextView) rowView.findViewById(R.id.item_expand);
             tvOpen = (TextView) rowView.findViewById(R.id.item_open);
+            progressBar = (ProgressBar) rowView.findViewById(R.id.progress);
+            progressBar.setIndeterminate(true);
 
             rowView.setOnClickListener(this);
             rowView.setOnLongClickListener(this);

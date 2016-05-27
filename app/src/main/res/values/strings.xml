@@ -50,4 +50,5 @@
     \n\nShould you need to get mor information, feel free to get in touch with us at the InfoLab, room I123.
     </string>
     <string name="action_search">Search</string>
+    <string name="attribute_error">Unable to load this item</string>
 </resources>

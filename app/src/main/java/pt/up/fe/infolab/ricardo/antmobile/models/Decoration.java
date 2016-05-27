@@ -4,8 +4,25 @@ import java.util.ArrayList;
 
 public class Decoration {
     private String photo;
-    private ArrayList<ResponseAttribute> attributes;
-    private ArrayList<ArrayList<ResponseAttribute>> levelTwoAttributes;
+    private ResponseAttribute attributes;
+    private ArrayList<ResponseAttribute> levelTwoAttributes;
+
+
+    public ArrayList<ResponseAttribute> getLevelTwoAttributes() {
+        return levelTwoAttributes;
+    }
+
+    public void setLevelTwoAttributes(ArrayList<ResponseAttribute> levelTwoAttributes) {
+        this.levelTwoAttributes = levelTwoAttributes;
+    }
+
+    public ResponseAttribute getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(ResponseAttribute attributes) {
+        this.attributes = attributes;
+    }
 
     public String getPhoto() {
         return photo;
@@ -13,22 +30,5 @@ public class Decoration {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public ArrayList<ResponseAttribute> getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(ArrayList<ResponseAttribute> attributes) {
-        this.attributes = attributes;
-    }
-
-
-    public ArrayList<ArrayList<ResponseAttribute>> getLevelTwoAttributes() {
-        return levelTwoAttributes;
-    }
-
-    public void setLevelTwoAttributes(ArrayList<ArrayList<ResponseAttribute>> levelTwoAttributes) {
-        this.levelTwoAttributes = levelTwoAttributes;
     }
 }
