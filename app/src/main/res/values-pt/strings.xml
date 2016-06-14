@@ -49,5 +49,6 @@
     </string>
     <string name="action_search">Search</string>
     <string name="attribute_error">Unable to load this item</string>
+    <string name="rate_us">Rate us!</string>
 
 </resources>

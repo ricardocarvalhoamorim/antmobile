@@ -74,17 +74,12 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         final SearchResult item = items.get(position);
         ((AntLookupViewHolder)holder).tvItemName.setText(item.getDescription());
-        //((AntLookupViewHolder) holder).progressBar.setIndeterminate(false);
-
 
         ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.GONE);
         ((AntLookupViewHolder) holder).tvItemRole.setText(item.getSources());
-
-
         ((AntLookupViewHolder) holder).itemContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 if (((AntLookupViewHolder) holder).tvItemAttributes.getVisibility() == View.VISIBLE) {
                     collapse(((AntLookupViewHolder) holder).tvItemAttributes);
@@ -108,7 +103,6 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                         .build();
 
                 String queryURL = builtUri.toString();
-                Log.e("REQ", queryURL);
                 ((AntLookupViewHolder) holder).progressBar.setVisibility(View.VISIBLE);
                 JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, queryURL, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -122,8 +116,6 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                             return;
                         }
 
-
-                        Log.e("REsp", "Response");
                         //Set item attributes in the display
                         String attributesString = "";
                         HashMap<String, String> attributes = new HashMap<>();
