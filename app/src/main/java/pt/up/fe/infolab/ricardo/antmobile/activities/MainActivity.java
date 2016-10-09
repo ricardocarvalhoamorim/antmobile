@@ -2,12 +2,14 @@ package pt.up.fe.infolab.ricardo.antmobile.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -15,6 +17,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private ViewPager viewPager;
     private String lastQuery;
     private AppBarLayout appBarLayout;
+    private TabLayout tabLayout;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +48,18 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar_layout);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         tabLayout.setupWithViewPager(viewPager);
         activeTab = tabLayout.getTabAt(0);
+        updateLayout(ContextCompat.getColor(this, R.color.bg_general));
         tabLayout.setOnTabSelectedListener(this);
+        tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(this, R.color.bg_tab_indicator));
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
@@ -73,6 +82,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         activeTab = tab;
 
         viewPager.setCurrentItem(tab.getPosition());
+
+        int[] tabColors = getResources().getIntArray(R.array.array_tab_colors);
+        updateLayout(tabColors[activeTab.getPosition()]);
+
         //last position, no need for the fab button
         if (activeTab.getPosition() >= adapter.getCount() - 4) {
             appBarLayout.setExpanded(false);
@@ -86,6 +99,24 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public void onTabReselected(TabLayout.Tab tab) {}
+
+    /**
+     * Update Background colors
+     * @param color color for the layout background
+     */
+    public void updateLayout(int color) {
+        viewPager.setBackgroundColor(color);
+        tabLayout.setBackgroundColor(color);
+        toolbar.setBackgroundColor(color);
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(color);
+        }
+
+    }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
@@ -161,7 +192,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         searchView.setOnQueryTextListener(queryTextListener);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     public String getActiveQuery() {
         return this.lastQuery == null ? "" : this.lastQuery;

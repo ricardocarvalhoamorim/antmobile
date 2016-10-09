@@ -7,12 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="2dp"
-    android:layout_margin="8dp"
+    android:layout_margin="4dp"
     android:id="@+id/item_container"
-    android:animateLayoutChanges="true"
     >
-
-
 
     <LinearLayout
         android:orientation="vertical"
@@ -54,16 +51,17 @@
                         android:layout_weight="0.8"
                         android:layout_height="wrap_content" />
 
-
-                    <ProgressBar
-                        android:id="@+id/progress"
-                        android:indeterminate="true"
-                        android:visibility="invisible"
-                        android:layout_gravity="center_vertical"
-                        style="?android:attr/progressBarStyleSmall"
+                    <ImageButton
+                        android:id="@+id/item_open"
+                        style="@style/Base.Widget.AppCompat.Button.Borderless"
+                        android:tint="@android:color/darker_gray"
+                        android:src="@drawable/ic_open_in_new_black_24dp"
+                        android:textAllCaps="true"
+                        android:layout_gravity="end"
                         android:layout_width="0dp"
-                        android:layout_weight="0.2"
-                        android:layout_height="wrap_content" />
+                        android:layout_weight="0.1"
+                        android:maxWidth="20dp"
+                        android:layout_height="20dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -131,7 +129,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-
+        <ProgressBar
+            android:id="@+id/progress"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp" />
 
         <LinearLayout
             android:layout_gravity="end"
@@ -142,24 +146,11 @@
             android:layout_marginRight="5dp"
             >
 
-
-
-            <TextView
-                android:id="@+id/item_open"
-                android:padding="10dp"
-                android:textColor="@android:color/darker_gray"
-                android:text="@string/open_profile"
-                android:textAllCaps="true"
-                android:layout_gravity="end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
             <TextView
                 android:id="@+id/item_expand"
                 android:textStyle="bold"
                 android:padding="10dp"
                 android:textAllCaps="true"
-                android:textColor="@color/colorPrimary"
                 android:text="@string/more"
                 android:layout_gravity="end"
                 android:layout_width="wrap_content"

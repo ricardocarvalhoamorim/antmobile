@@ -84,25 +84,25 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
 
         switch (mCurrentTag) {
             case "Todos":
-                setFeedbackMessage(getString(R.string.message_all), R.drawable.ic_ant);
+                setFeedbackMessage(getString(R.string.message_all), R.drawable.ic_loop);
                 break;
             case "Funcionário":
-                setFeedbackMessage(getString(R.string.message_staff), R.drawable.ic_staff_92dp);
+                setFeedbackMessage(getString(R.string.message_staff), R.drawable.ic_person_92dp);
                 break;
             case "Estudante":
-                setFeedbackMessage(getString(R.string.message_students), R.drawable.ic_student_92dp);
+                setFeedbackMessage(getString(R.string.message_students), R.drawable.ic_student_hat_92dp);
                 break;
             case "Sala":
-                setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_rooms);
+                setFeedbackMessage(getString(R.string.message_rooms), R.drawable.ic_building_92dp);
                 break;
             case "Cadeira":
-                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_curricular_unit_92dp);
+                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_book_92dp);
                 break;
             case "Curso":
-                setFeedbackMessage(getString(R.string.message_uc), R.drawable.ic_course_92dp);
+                setFeedbackMessage(getString(R.string.message_course), R.drawable.ic_toolbox_92dp);
                 break;
             case "Noticia":
-                setFeedbackMessage(getString(R.string.message_news), R.drawable.ic_newspaper);
+                setFeedbackMessage(getString(R.string.message_news), R.drawable.ic_news_92dp);
                 break;
         }
 
@@ -238,6 +238,8 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
     private void dispatchQuery(String extra) {
         lookupItems.clear();
         mAdapter.notifyDataSetChanged();
+        //TODO: // implement pagination
+        int page = 0;
 
         swLayout.setRefreshing(true);
         //String baseQuery = "http://172.30.9.217:3000/search.json?";
@@ -245,7 +247,9 @@ public class SearchFragment extends Fragment implements Response.ErrorListener, 
         String baseQuery = Utils.antEndpoint + "/search?";
         Uri.Builder builder = Uri.parse(baseQuery)
                 .buildUpon()
-                .appendQueryParameter("num", "20");
+                .appendQueryParameter("num", "20")
+                .appendQueryParameter("start", "" + page * 20);
+
 
         if (!mCurrentTag.equals("Todos")) {
             builder.appendQueryParameter("tipoentidade", mCurrentTag);

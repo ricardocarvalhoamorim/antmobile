@@ -18,7 +18,7 @@
 
     <string name="message_all">Pesquisa generalizada. O ANT decide o que é mais relevante de acordo com os termos da pesquisa</string>
     <string name="message_staff">Funcionários associados à Universidade. Inclui professores, bolseiros de investigação e investigadores externos (entre outras entidades desta categoria)</string>
-    <string name="message_students">Pesquisa de estudantes</string>
+    <string name="message_students">Pesquisa de estudantes. Pode incluir, por exemplo, antigos alunos</string>
     <string name="message_rooms">Salas, laboratórios e anfiteatros, com ou sem equipamentos como projetores e computadores</string>
     <string name="empty_query">A pesquisa deve incluir alguns termos</string>
     <string name="no_menu">Não há nenhum menu disponível para este restaurante…</string>
@@ -26,6 +26,7 @@
     <string name="message_news">Notícias da Universiade do Porto</string>
     <string name="get_news">Obter notícias</string>
     <string name="message_uc">Procura por unidades curriculares e consulta do plano de trabalhos de cada uma</string>
+    <string name="message_course">Procura um curso específico e consulta informações sobre o plano de trabalhos e cadeiras associadas.</string>
     <string name="category_all">todos</string>
     <string name="category_student">estudante</string>
     <string name="category_staff">funcionário</string>
@@ -47,8 +48,29 @@
     \n\nRecentemente (tipo 10 minutos atrás), associamos ao nosso projeto uma designer talentosa, que nos ajuda a resolver problemas de interface recorrentes. Chama-se Ana Rocha Reis (obrigado Ana!). Pode consultar o portfolio da Ana em cargocollective.com/RochaReisDesign.
             \n\nPara qualquer contacto, pode encontrar-nos no InfoLab, sala I123.
     </string>
-    <string name="action_search">Search</string>
-    <string name="attribute_error">Unable to load this item</string>
-    <string name="rate_us">Rate us!</string>
+    <string name="action_search">Pesquisar</string>
+    <string name="attribute_error">Impossível carregar</string>
+    <string name="rate_us">Avalia o ANT</string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">Seguinte</string>
+    <string name="skip">Staltar</string>
+    <string name="start">OK!</string>
+
+    <string name="slide_1_title">Bem-vindo!</string>
+    <string name="slide_1_desc">ANT é uma plataforma educativa para investigação no domínio dos motores de pesquisa. Este é um caso de estudo particular, aplicado ao SIGARRA e aos sistemas de informação da Universidade do Porto.</string>
+
+    <string name="slide_2_title">Tudo @UPorto</string>
+    <string name="slide_2_desc">Procuras um colega de grupo? Um professor? Uma sala? O ANT encontra-os por ti. Em segundos. Clica em cada resultado para expandir e obter mais informações, ou ser redirecionado para a página oficial.</string>
+
+    <string name="slide_3_title">Esfomeado?</string>
+    <string name="slide_3_desc">Comida. Tu não és tu quando tens fome. As cantinas e restaurantes associados têm um menu semanal. O ANT encontra-os e organiza-os para ti.</string>
+
+    <string name="slide_4_title">Estacionamento @FEUP</string>
+    <string name="slide_4_desc">Caótico, como sabemos. Podes ver se ainda existe espaço para o teu carro antes de saíres. Cortesia da faculdade (e do ANT).</string>
+
+    <string name="slide_5_title">Queremos ouvir-te</string>
+    <string name="slide_5_desc">Esperamos que o ANT torne a tua vida académica  mais fácil. É o nosso objetivo. Mas queremos melhorar. Tens novas ideias? Passa no laboratório I123, na FEUP com umas cervejas ou consulta ant.fe.up.pt para saberes como podes contribuir ;)</string>
+
 
 </resources>

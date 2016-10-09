@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/bg_about"
     >
 
     <LinearLayout
@@ -55,7 +55,7 @@
             android:autoLink="web"
             android:fontFamily="sans-serif-thin"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
-            android:text="v1.0/2016\nJosé Devezas\nRicardo Amorim\nAna Rocha Reis"
+            android:text="v1.01/2016\nJosé Devezas\nRicardo Amorim\nAna Rocha Reis"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

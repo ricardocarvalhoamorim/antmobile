@@ -1,12 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryFaded">#b1990900</color>
-    <color name="colorPrimary">#ff990900</color>
-    <color name="colorPrimaryDark">#ff670004</color>
+    <color name="colorPrimaryFaded">#448bd2</color>
+    <color name="colorPrimary">#1976D2</color>
+    <color name="colorPrimaryDark">#366fa9</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#ffff7c70</color>
     <color name="light_gray">#ededed</color>
+
+    <!-- for the intro screen -->
+    <!-- Screens background color-->
+    <color name="bg_screen1">#1976D2</color>
+    <color name="bg_screen2">#E64A19</color>
+    <color name="bg_screen3">#009688</color>
+    <color name="bg_screen4">#FF9800</color>
+    <color name="bg_screen5">#388E3C</color>
+
+    <!-- dots inactive colors -->
+    <color name="dot_dark_screen1">#115293</color>
+    <color name="dot_dark_screen2">#71240c</color>
+    <color name="dot_dark_screen3">#00514a</color>
+    <color name="dot_dark_screen4">#704301</color>
+    <color name="dot_dark_screen5">#27642a</color>
+
+    <!-- dots active colors -->
+    <color name="dot_light_screen1">#448bd2</color>
+    <color name="dot_light_screen2">#e47b5a</color>
+    <color name="dot_light_screen3">#01c4b2</color>
+    <color name="dot_light_screen4">#fcbe63</color>
+    <color name="dot_light_screen5">#51ce57</color>
+
+
+    <!-- Main interface colors -->
+    <color name="bg_general">#1976D2</color>
+    <color name="bg_students">#004D40</color>
+    <color name="bg_staff">#2E7D32</color>
+    <color name="bg_room">#9b59b6</color>
+    <color name="bg_course_unit">#c0392b</color>
+    <color name="bg_courses">#00838F</color>
+    <color name="bg_news">#f39c12</color>
+    <color name="bg_menu">#4E342E</color>
+    <color name="bg_parking">#34495e</color>
+    <color name="bg_about">#388E3C</color>
+
+
+    <array name="array_dot_active">
+        <item>@color/dot_light_screen1</item>
+        <item>@color/dot_light_screen2</item>
+        <item>@color/dot_light_screen3</item>
+        <item>@color/dot_light_screen4</item>
+        <item>@color/dot_light_screen5</item>
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/dot_dark_screen1</item>
+        <item>@color/dot_dark_screen2</item>
+        <item>@color/dot_dark_screen3</item>
+        <item>@color/dot_dark_screen4</item>
+        <item>@color/dot_dark_screen5</item>
+    </array>
+
+    <array name="array_tab_colors">
+        <item>@color/bg_general</item>
+        <item>@color/bg_students</item>
+        <item>@color/bg_staff</item>
+        <item>@color/bg_room</item>
+        <item>@color/bg_course_unit</item>
+        <item>@color/bg_courses</item>
+        <item>@color/bg_news</item>
+        <item>@color/bg_menu</item>
+        <item>@color/bg_parking</item>
+        <item>@color/bg_about</item>
+    </array>
+
+
+    <color name="bg_tab_indicator">#85000000</color>
 
 </resources>

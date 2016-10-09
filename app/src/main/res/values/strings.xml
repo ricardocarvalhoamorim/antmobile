@@ -18,7 +18,7 @@
 
     <string name="message_all">General search. ANT decides what is more relevant for the provided query</string>
     <string name="message_staff">University staff. Including teachers, researchers and external collaborators (among others)</string>
-    <string name="message_students">Student search</string>
+    <string name="message_students">Student search. This may include, for instance, former students.</string>
     <string name="message_rooms">Rooms, laboratories and auditoriums, with or without computers or lab equipment</string>
     <string name="empty_query">This query must not be empty</string>
     <string name="no_menu">There is no menu for this restaurant…</string>
@@ -26,6 +26,7 @@
     <string name="message_news">Universidade do Porto in the news</string>
     <string name="get_news">Get news</string>
     <string name="message_uc">Search for curricular units along with their planning</string>
+    <string name="message_course">Search for a specific course and get an overview on the available plan, and curricular units.</string>
 
 
     <string name="category_all">general</string>
@@ -45,11 +46,34 @@
 
      <string name="about">Ant Mobile was developed by two devoted programmers looking for a better way to search for people and resources in complex information systems.\nThis app consists of two main blocks: the app itself and ANT, the platform that indexes the available information on a daily basis.
             \n\nANT is currently being developed (and tested) at the InfoLab (infolab.fe.up.pt) by José Devezas. It consists of a research platform in the domain of entity oriented search. In this particular case, ANT is focused on the University of Porto\'s information system. It aims at promoting research in this field by providing a basis for integration with other research fields such as indexing strategies, ranking algorithms and, among others, query suggestion. You can check the latest version at ant.fe.up.pt.
-    \n\nANT Mobile is the app itself. It started as an idea of solving the particular issue of searching for anything at the University of Porto wherever you are. It resorts to the ANT infrastructure to fetch the search results and show the end users a mobile friendly interface and interaction. Besides that, it also shows additional (hopefully useful) information about the park occupation and the canteens\' menu.
-    \n\nWe (very, like 10 minutes ago)recently got a talented designer to handle some interface issues that we were constantly facing. Her name is Ana Reis (big thanks to her), and you can check her portfolio at cargocollective.com/RochaReisDesign.
+    \n\nANT Mobile is the app itself, developed by me, Ricardo. It started as an idea of solving the particular issue of searching for anything at the University of Porto wherever you are. It resorts to the ANT infrastructure to fetch results and show the end users a mobile friendly interface and interaction. Besides that, it also shows additional (hopefully useful) information about the park occupation and the canteens\' menu.
+    \n\nOur motivation is contagious, and thus we managed to \"hire\" a designer to provide a better overall experience in the app. Her name is Ana Reis (big thanks to her), and you can check her portfolio at cargocollective.com/RochaReisDesign.
     \n\nShould you need to get mor information, feel free to get in touch with us at the InfoLab, room I123.
     </string>
     <string name="action_search">Search</string>
     <string name="attribute_error">Unable to load this item</string>
     <string name="rate_us">Rate us!</string>
+
+    <!-- for the intro screen -->
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Welcome!</string>
+    <string name="slide_1_desc">ANT is an educational platform for research in the domain of search engines. This is a particular case study based on the SIGARRA and the University of Porto Information Systems. </string>
+
+    <string name="slide_2_title">Everything @UPorto</string>
+    <string name="slide_2_desc">Looking for a classmate? A teacher? A room? You name it, Ant will find it for you! In seconds. Tap each result to get more info on the result or get directed to the official page.</string>
+
+    <string name="slide_3_title">Starving?</string>
+    <string name="slide_3_desc">Food. You\'re not the same person when you\'re hungry. Find what\'s the menu around you. Canteens and restaurants have their menus and ANT organizes them for you.</string>
+
+    <string name="slide_4_title">Parking @FEUP</string>
+    <string name="slide_4_desc">We know, chaotic. You can check if there\'s room for your car right before you leave. Courtesy of the faculty.</string>
+
+    <string name="slide_5_title">We want to hear you</string>
+    <string name="slide_5_desc">We hope ANT will make your academic life a bit easier. Its our main goal. And we want to keep improving. Do you have new ideas? Head over to the room I123 at FEUP with a couple of beers or check ant.fe.up.pt to get involved ;)</string>
+
 </resources>

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -77,7 +78,8 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
 
         ((AntLookupViewHolder) holder).tvItemAttributes.setVisibility(View.GONE);
         ((AntLookupViewHolder) holder).tvItemRole.setText(item.getSources());
-        ((AntLookupViewHolder) holder).itemContainer.setOnClickListener(new View.OnClickListener() {
+
+        View.OnClickListener itemClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -162,22 +164,10 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
                 // Adding request to request queue
                 AppController.getInstance().addToRequestQueue(req);
             }
-        });
+        };
 
-        ((AntLookupViewHolder)holder).tvExpand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (((AntLookupViewHolder) holder).tvItemAttributes.getVisibility() == View.VISIBLE) {
-                    collapse(((AntLookupViewHolder) holder).tvItemAttributes);
-                    ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.more));
-                } else {
-                    expand(((AntLookupViewHolder) holder).tvItemAttributes);
-                    ((AntLookupViewHolder)holder).tvExpand.setText(context.getString(R.string.less));
-                }
-            }
-        });
-
+        ((AntLookupViewHolder) holder).itemContainer.setOnClickListener(itemClickListener);
+        ((AntLookupViewHolder)holder).tvExpand.setOnClickListener(itemClickListener);
 
         ((AntLookupViewHolder) holder).tvOpen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,7 +224,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         private TextView tvItemRole;
         private TextView tvRoom;
         private TextView tvExpand;
-        private TextView tvOpen;
+        private ImageButton tvOpen;
         private ImageView ivItemDrawable;
         private CardView itemContainer;
         private ProgressBar progressBar;
@@ -249,7 +239,7 @@ public class AntLookupItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             tvItemRole = (TextView) rowView.findViewById(R.id.item_role);
             tvRoom = (TextView) rowView.findViewById(R.id.item_room);
             tvExpand = (TextView) rowView.findViewById(R.id.item_expand);
-            tvOpen = (TextView) rowView.findViewById(R.id.item_open);
+            tvOpen = (ImageButton) rowView.findViewById(R.id.item_open);
             progressBar = (ProgressBar) rowView.findViewById(R.id.progress);
             progressBar.setIndeterminate(true);
 
